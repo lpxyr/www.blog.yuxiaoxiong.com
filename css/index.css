@@ -27995,7 +27995,7 @@ div#runtime {
   margin-top: 40px;
   display: flex;
   flex-wrap: nowrap;
-  animation: rowup 60s linear infinite;
+  animation: rowup 20s linear infinite;
 }
 #skills-tags-group-all .tags-group-icon-pair {
   margin-left: 1rem;
