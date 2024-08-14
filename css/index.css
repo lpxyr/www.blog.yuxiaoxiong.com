@@ -6838,7 +6838,7 @@ body[data-type="link"] #page .page-title {
   overflow: hidden;
   height: 200px;
   position: relative;
-  width: calc(100% / 7 - 16px);
+  width: calc(100% / 4 - 16px);
   background: var(--anzhiyu-card-bg);
   -webkit-box-shadow: var(--anzhiyu-shadow-border);
   box-shadow: var(--anzhiyu-shadow-border);
