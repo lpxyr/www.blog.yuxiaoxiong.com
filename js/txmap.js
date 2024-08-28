@@ -173,7 +173,7 @@ function showWelcome() {
                                     break;
                             }
                         case "深圳市":
-                            posdesc = "今天你996了嘛~";
+                            posdesc = "1~";
                             break;
                             // switch (ipLoacation.result.ad_info.district) {
                             //     case "坪山区":
