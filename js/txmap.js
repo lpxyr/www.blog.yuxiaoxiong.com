@@ -173,15 +173,16 @@ function showWelcome() {
                                     break;
                             }
                         case "深圳市":
-                            switch (ipLoacation.result.ad_info.district) {
-                                case "坪山区":
-                                    posdesc = "好巧！博主也在坪山区生活喔~";
-                                    break;
-                                default:
-                                    posdesc = "今天你996了嘛~";
-                                    break;
-                            }
+                            posdesc = "今天你996了嘛~";
                             break;
+                            // switch (ipLoacation.result.ad_info.district) {
+                            //     case "坪山区":
+                            //         posdesc = "好巧！博主也在坪山区生活喔~";
+                            //         break;
+                            //     default:
+
+                            // }
+                            // break;
                         case "湛江市":
                             switch (ipLoacation.result.ad_info.district) {
                                 case "雷州市":
