@@ -172,6 +172,7 @@ function showWelcome() {
                                     posdesc = "看小蛮腰，喝早茶了嘛~ ";
                                     break;
                             }
+                            break;
                         case "深圳市":
                             posdesc = "1~";
                             break;
