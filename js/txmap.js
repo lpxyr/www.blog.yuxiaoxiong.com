@@ -174,16 +174,16 @@ function showWelcome() {
                             }
                             break;
                         case "深圳市":
-                            posdesc = "1~";
-                            break;
-                            // switch (ipLoacation.result.ad_info.district) {
-                            //     case "坪山区":
-                            //         posdesc = "好巧！博主也在坪山区生活喔~";
-                            //         break;
-                            //     default:
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
 
-                            // }
-                            // break;
+                            }
+                            break;
                         case "湛江市":
                             switch (ipLoacation.result.ad_info.district) {
                                 case "雷州市":
@@ -193,7 +193,7 @@ function showWelcome() {
                                     posdesc = "海鲜盛宴，自然风光~";
                                     break;
                             }
-                                break;
+                            break;
                         case "韶关市":  
                             switch (ipLoacation.result.ad_info.district) {
                                 case "浈江区":
@@ -224,150 +224,148 @@ function showWelcome() {
                                     break;
                             }
                             break; 
-                        // case "江门市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "茂名市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "肇庆市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "惠州市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "梅州市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "汕头市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "河源市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "阳江市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "清远市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "东莞市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "中山市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "潮州市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "揭阳市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
-                        // case "云浮市":
-                        //     switch (ipLoacation.result.ad_info.district) {
-                        //         case "坪山区":
-                        //             posdesc = "好巧！博主也在坪山区生活喔~";
-                        //             break;
-                        //         default:
-                        //             posdesc = "今天你996了嘛~";
-                        //             break;
-                        //     }
-                        //     break;
+                        case "江门市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "新会区":
+                                    posdesc = "古井烧鹅吃起来~";
+                                    break;
+                                default:
+                                    posdesc = "世界文化遗产开平碉楼欢迎您~";
+                                    break;
+                            }
+                            break;
+                        case "茂名市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "电白区":
+                                    posdesc = "中国第一滩欢迎您~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "肇庆市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "惠州市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "梅州市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "汕头市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "河源市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "阳江市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "清远市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "东莞市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "中山市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "潮州市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "揭阳市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
+                        case "云浮市":
+                            switch (ipLoacation.result.ad_info.district) {
+                                case "坪山区":
+                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                    break;
+                                default:
+                                    posdesc = "今天你996了嘛~";
+                                    break;
+                            }
+                            break;
                                                                                          
-                        // default:
-                        //     posdesc = "来两斤福建人~";
-                        //     break;
+
                     }
                     break;
                 case "广西壮族自治区":
