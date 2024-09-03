@@ -74,6 +74,12 @@ function showWelcome() {
                 case "北京市":
                     posdesc = "北——京——欢迎你~~~";
                     break;
+                case "重庆市":
+                    posdesc = "勒是雾都~~~";
+                    break;
+                case "上海市":
+                    posdesc = "众所周知，中国只有两个城市";
+                    break;
                 case "天津市":
                     posdesc = "讲段相声吧";
                     break;
@@ -95,9 +101,7 @@ function showWelcome() {
                 case "黑龙江省":
                     posdesc = "很喜欢哈尔滨大剧院";
                     break;
-                case "上海市":
-                    posdesc = "众所周知，中国只有两个城市";
-                    break;
+
                 case "江苏省":
                     switch (ipLoacation.result.ad_info.city) {
                         case "南京市":
@@ -240,27 +244,27 @@ function showWelcome() {
                                     posdesc = "中国第一滩欢迎您~";
                                     break;
                                 default:
-                                    posdesc = "今天你996了嘛~";
+                                    posdesc = "洗太故里,南方油城~";
                                     break;
                             }
                             break;
                         case "肇庆市":
                             switch (ipLoacation.result.ad_info.district) {
-                                case "坪山区":
-                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                case "高要区":
+                                    posdesc = "品味百年古镇的风情~";
                                     break;
                                 default:
-                                    posdesc = "今天你996了嘛~";
+                                    posdesc = "国家历史文化名城欢迎您~";
                                     break;
                             }
                             break;
                         case "惠州市":
                             switch (ipLoacation.result.ad_info.district) {
-                                case "坪山区":
-                                    posdesc = "好巧！博主也在坪山区生活喔~";
+                                case "惠城区":
+                                    posdesc = "惠州西湖欢迎您~";
                                     break;
                                 default:
-                                    posdesc = "今天你996了嘛~";
+                                    posdesc = "打卡恐龙公园~";
                                     break;
                             }
                             break;
@@ -363,9 +367,7 @@ function showWelcome() {
                                     posdesc = "今天你996了嘛~";
                                     break;
                             }
-                            break;
-                                                                                         
-
+                            break;                                                                   
                     }
                     break;
                 case "广西壮族自治区":
