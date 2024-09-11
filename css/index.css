@@ -6040,6 +6040,16 @@ body[data-type='about'] #web_bg {
     width: 100% !important;
   }
 }
+@media screen and (min-width: 900px) {
+  .layout > div:first-child {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -o-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+  }
+}
 .layout.hide-aside {
   max-width: 1000px;
 }
@@ -6787,11 +6797,11 @@ body[data-type="link"] #page .page-title {
   display: none;
 }
 #flink-banners #skills-tags-group-all .tags-group-wrapper {
-  -webkit-animation: rowup 120s linear infinite;
-  -moz-animation: rowup 120s linear infinite;
-  -o-animation: rowup 120s linear infinite;
-  -ms-animation: rowup 120s linear infinite;
-  animation: rowup 120s linear infinite;
+  -webkit-animation: rowup 8s linear infinite;
+  -moz-animation: rowup 8s linear infinite;
+  -o-animation: rowup 8s linear infinite;
+  -ms-animation: rowup 8s linear infinite;
+  animation: rowup 8s linear infinite;
 }
 #flink-banners #skills-tags-group-all .tags-group-icon {
   border-radius: 50%;
@@ -9631,7 +9641,7 @@ h1.page-title + .tag-cloud-list {
 }
 @media screen and (min-width: 1200px) {
   #aside-content {
-    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 @media screen and (max-width: 1200px) {
