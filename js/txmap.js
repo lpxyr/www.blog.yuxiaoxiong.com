@@ -270,11 +270,11 @@ function showWelcome() {
                             break;
                         case "梅州市":
                             switch (ipLoacation.result.ad_info.district) {
-                                case "坪山区":
+                                case "梅江区":
                                     posdesc = "好巧！博主也在坪山区生活喔~";
                                     break;
                                 default:
-                                    posdesc = "今天你996了嘛~";
+                                    posdesc = "挡不住的“柚”惑~";
                                     break;
                             }
                             break;
