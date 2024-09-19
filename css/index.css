@@ -14665,6 +14665,18 @@ blockquote {
 #article-container > :last-child {
   margin-bottom: 0 !important;
 }
+.ptbj {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media screen and (max-width: 768px) {
+  .ptbj {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+}
 @media screen and (max-width: 768px) {
   #post {
     background: var(--anzhiyu-background) !important;
