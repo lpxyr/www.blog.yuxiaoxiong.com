@@ -1,0 +1,1631 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>汉字笔画动画工具 | 鱼小熊</title><meta name="keywords" content="汉字,笔画,动画"><meta name="author" content="鱼小熊"><meta name="copyright" content="鱼小熊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="汉字笔画动画工具"><meta name="application-name" content="汉字笔画动画工具"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="汉字笔画动画工具"><meta property="og:url" content="http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/index.html"><meta property="og:site_name" content="鱼小熊"><meta property="og:description" content="汉字笔画动画工具这个交互式工具可以展示汉字的笔画顺序动画，并提供拼音显示和语音朗读功能，适合汉字学习。          &amp;#x2F;* 基础样式调整 *&amp;#x2F;   * {     margin: 0;     padding: 0;     box-sizing: border-box;     font-fa"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg"><meta property="article:author" content="鱼小熊"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg"><meta name="description" content="汉字笔画动画工具这个交互式工具可以展示汉字的笔画顺序动画，并提供拼音显示和语音朗读功能，适合汉字学习。          &amp;#x2F;* 基础样式调整 *&amp;#x2F;   * {     margin: 0;     padding: 0;     box-sizing: border-box;     font-fa"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 客官，请留步！","backTitle":"♪(^∇^*)客官，欢迎入住本店！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.lpxyr0206.com/',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"6faae0af757b28a4e7c26c24e7f5d0a7","mailMd5":"53de75fbd2a362ce44f9e317c44d7f3e"},
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: {"mode":"cdn","api":"https://img2color-go.vercel.app/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 鱼小熊","link":"链接: ","source":"来源: 鱼小熊","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '鱼小熊',
+  title: '汉字笔画动画工具',
+  postAI: '',
+  pageFillDescription: '汉字笔画动画工具汉字笔画动画工具这个交互式工具可以展示汉字的笔画顺序动画并提供拼音显示和语音朗读功能适合汉字学习基础样式调整控制区域样式选择语音开始写字朗读文字动画速度暂停继续重播提示输入后点击按钮汉字将横向排列并从左到右播放动画支持拼音显示和朗读多音字可点击拼音切换读音从库获取函数控制元素存储每个汉字的拼音选项动画控制变量默认速度笔画之间的延迟会随速度变化存储每个字的当前笔画进度检查浏览器是否支持语音合成提示您的浏览器不支持语音朗读功能请使用最新版或浏览器监听语音列表加载完成事件清空现有选项选择语音获取所有可用语音筛选中文语音填充语音选择下拉菜单启用语音选择器显示语音状态信息检测到个中文语音可用请选择需要使用的语音默认选择第一个语音未检测到中文语音包朗读可能无法正常工作监听语音选择变化已选择语音请从个可用语音中选择一个主动触发一次语音列表更新某些浏览器需要清空进度记录重置控制按钮状态提示输入后点击按钮汉字将横向排列并从左到右播放动画支持拼音显示和朗读多音字可点击拼音切换读音获取带声调的汉字拼音支持多音字处理对于整个文本进行拼音转换启用多音字识别返回数组形式启用多音字识别处理结果提取每个字的拼音选项对于多音字会返回数组否则返回字符串去重处理获取拼音失败创建拼音显示区域如果是多音字添加下拉选项点击拼音显示隐藏选项点击页面其他地方关闭选项准备中初始化当前字的笔画进度创建实例时使用当前的动画速度和延迟等待播放加载失败加载失败请尝试其他汉字记录笔画进度的回调函数所有汉字动画播放完成更新当前动画索引正在播放第个字播放中动画参数中指定当前速度和延迟使用我们自己记录的进度信息已完成字与字之间的延迟也随速度变化更新进度记录暂停当前动画更新状态文本已暂停已暂停在第个字继续当前动画更新状态文本播放中继续播放第个字重播动画先暂停所有动画重置所有进度记录重置所有汉字状态等待播放重新开始播放更新控制按钮状态优化的朗读功能使用用户选择的拼音检查是否选择了语音请先选择一个可用的中文语音停止任何正在进行的朗读创建带拼音的朗读文本用于提示使用用户选择的语音优化语音参数语速随动画速度同步变化音调音量开始朗读更新提示正在用朗读朗读结束时更新提示已用朗读完成更详细的错误处理朗读失败朗读被取消没有朗读权限请检查浏览器设置音频捕获失败使用语音合成失败请尝试选择其他语音或检查语音包朗读发生错误朗读错误尝试修复语音合成的函数某些浏览器需要先触发一次空的合成才能正常工作测试静音测试强制刷新语音列表尝试修复语音合成失败错误请输入中文文字错误仅支持中文汉字请重新输入保存当前文本用于朗读一次性获取整个文本的拼音支持上下文分析绑定朗读按钮事件先检查是否有可用的中文语音未检测到中文语音包正在尝试修复尝试修复语音问题未检测到中文语音包请在浏览器设置中安装中文语音或使用浏览器速度控制事件计算笔画之间的延迟速度越快延迟越小如果动画正在播放实时更新当前动画的速度暂停当前动画使用我们自己记录的进度信息重新开始动画已完成更新进度记录暂停按钮事件继续按钮事件重播按钮事件单个汉字获取拼音的备用方法获取拼音失败屏幕尺寸已调整可直接点击开始笔画动画已保留上次输入无已恢复上次输入点击按钮即可播放初始化速度显示页面加载时尝试初始化语音合成',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-09-05 18:10:36',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.14/tianli_gpt.css"><link rel="stylesheet" href="/css/icat.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/source/calendar.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/source/fy.css"><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/yuxiaoxiong.gif"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">鱼小熊</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/daohang/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 设计导航</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 乐坊</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/gallery/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/books/"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> 书籍</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/alipay.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/3dmax/" style="font-size: 1.05rem;">3dmax<sup>1</sup></a><a href="/tags/3%E7%BB%B4%E8%BD%AF%E4%BB%B6/" style="font-size: 1.05rem;">3维软件<sup>2</sup></a><a href="/tags/AE/" style="font-size: 1.05rem;">AE<sup>2</sup></a><a href="/tags/AE%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">AE教程<sup>1</sup></a><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>1</sup></a><a href="/tags/Adobe-Premiere/" style="font-size: 1.05rem;">Adobe Premiere<sup>1</sup></a><a href="/tags/Ai/" style="font-size: 1.05rem;">Ai<sup>2</sup></a><a href="/tags/Arnold/" style="font-size: 1.05rem;">Arnold<sup>1</sup></a><a href="/tags/Astute-Graphics/" style="font-size: 1.05rem;">Astute_Graphics<sup>1</sup></a><a href="/tags/Corona/" style="font-size: 1.05rem;">Corona<sup>1</sup></a><a href="/tags/Lightroom/" style="font-size: 1.05rem;">Lightroom<sup>1</sup></a><a href="/tags/MAC%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">MAC系统<sup>4</sup></a><a href="/tags/c4d/" style="font-size: 1.05rem;">c4d<sup>3</sup></a><a href="/tags/ps/" style="font-size: 1.05rem;">ps<sup>2</sup></a><a href="/tags/vray/" style="font-size: 1.05rem;">vray<sup>1</sup></a><a href="/tags/win%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">win系统<sup>6</sup></a><a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 1.05rem;">动画<sup>1</sup></a><a href="/tags/%E5%AD%97%E4%BD%93/" style="font-size: 1.05rem;">字体<sup>4</sup></a><a href="/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">实用工具<sup>1</sup></a><a href="/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">小工具<sup>3</sup></a><a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 1.05rem;">插件<sup>7</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">操作系统<sup>1</sup></a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">教程<sup>3</sup></a><a href="/tags/%E6%9D%8E%E6%B6%9B/" style="font-size: 1.05rem;">李涛<sup>1</sup></a><a href="/tags/%E6%B1%89%E5%AD%97/" style="font-size: 1.05rem;">汉字<sup>1</sup></a><a href="/tags/%E6%B8%B2%E6%9F%93%E5%99%A8/" style="font-size: 1.05rem;">渲染器<sup>3</sup></a><a href="/tags/%E7%AC%94%E7%94%BB/" style="font-size: 1.05rem;">笔画<sup>1</sup></a><a href="/tags/%E7%BB%BF%E8%89%B2%E8%BD%AF%E4%BB%B6/" style="font-size: 1.05rem;">绿色软件<sup>2</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6/" style="font-size: 1.05rem;">设计软件<sup>11</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url">工具</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E6%B1%89%E5%AD%97/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>汉字</span></a><a class="article-meta__tags" href="/tags/%E7%AC%94%E7%94%BB/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>笔画</span></a><a class="article-meta__tags" href="/tags/%E5%8A%A8%E7%94%BB/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>动画</span></a></span></div></div><h1 class="post-title" itemprop="name headline">汉字笔画动画工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-09-04T16:00:00.000Z" title="发表于 2025-09-05 00:00:00">2025-09-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-09-05T10:10:36.828Z" title="更新于 2025-09-05 18:10:36">2025-09-05</time><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="word-count" title="文章字数">3.4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span>16分钟</span></span></span><span class="post-meta-separator"></span><span id="" data-flag-title="汉字笔画动画工具"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span id="twikoo_visitors" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为广州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>广州</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><a href="/2025/09/05/bihua/#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/"><header><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url">工具</a><a href="/tags/%E6%B1%89%E5%AD%97/" tabindex="-1" itemprop="url">汉字</a><a href="/tags/%E7%AC%94%E7%94%BB/" tabindex="-1" itemprop="url">笔画</a><a href="/tags/%E5%8A%A8%E7%94%BB/" tabindex="-1" itemprop="url">动画</a><h1 id="CrawlerTitle" itemprop="name headline">汉字笔画动画工具</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">鱼小熊</span><time itemprop="dateCreated datePublished" datetime="2025-09-04T16:00:00.000Z" title="发表于 2025-09-05 00:00:00">2025-09-05</time><time itemprop="dateCreated datePublished" datetime="2025-09-05T10:10:36.828Z" title="更新于 2025-09-05 18:10:36">2025-09-05</time></header><h1 id="汉字笔画动画工具"><a href="#汉字笔画动画工具" class="headerlink" title="汉字笔画动画工具"></a>汉字笔画动画工具</h1><p>这个交互式工具可以展示汉字的笔画顺序动画，并提供拼音显示和语音朗读功能，适合汉字学习。</p>
+<!-- 引入必要的外部资源 -->
+<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.18.2/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7.0/dist/hanzi-writer.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- 工具样式 -->
+<style>
+  /* 基础样式调整 */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+  }
+
+  .char-tool-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px 15px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .char-tool-container h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 36px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .input-area {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+
+  #char-input {
+    padding: 18px 22px;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 22px;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  #voice-select {
+    padding: 18px 22px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 20px;
+    background-color: white;
+    outline: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  #voice-select:focus {
+    border-color: #4096ff;
+    box-shadow: 0 0 0 3px rgba(64, 150, 255, 0.1);
+  }
+
+  #voice-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+  #char-input:focus {
+    border-color: #4096ff;
+    box-shadow: 0 0 0 3px rgba(64, 150, 255, 0.1);
+  }
+
+  .btn {
+    padding: 18px 32px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    border: none;
+  }
+
+  .btn i {
+    font-size: 22px;
+  }
+
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn.primary {
+    background-color: #4096ff;
+    color: white;
+  }
+
+  .btn.primary:hover:not(:disabled) {
+    background-color: #3086e8;
+  }
+
+  .btn.success {
+    background-color: #67c23a;
+    color: white;
+  }
+
+  .btn.success:hover:not(:disabled) {
+    background-color: #52af31;
+  }
+
+  .btn.secondary {
+    background-color: #909399;
+    color: white;
+  }
+
+  .btn.secondary:hover:not(:disabled) {
+    background-color: #7b7f85;
+  }
+
+  .animation-area {
+    margin-bottom: 30px;
+    padding: 20px 10px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+
+  #chars-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 15px 0;
+  }
+
+  .char-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+  }
+
+  .char-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .char-pinyin {
+    font-size: 24px;
+    color: #333;
+    height: 36px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #f0f7ff;
+  }
+
+  .char-pinyin:hover {
+    color: #4096ff;
+    background-color: #e6f4ff;
+  }
+
+  .pinyin-options {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 8px;
+    min-width: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+  }
+
+  .pinyin-option {
+    padding: 6px 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .pinyin-option:hover {
+    background-color: #f0f7ff;
+    color: #4096ff;
+  }
+
+  .char-canvas {
+    width: 160px;
+    height: 160px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px #f0f0f0;
+  }
+
+  .char-status {
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .global-tip {
+    color: #666;
+    font-size: 18px;
+    margin-top: 12px;
+    line-height: 1.6;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background-color: #f5f7fa;
+  }
+
+  .error-tip {
+    color: #f56c6c;
+    background-color: #fff2f2;
+  }
+
+  .success-tip {
+    color: #67c23a;
+    background-color: #f0f9eb;
+  }
+
+  .speech-info {
+    font-size: 16px;
+    color: #4096ff;
+    margin-top: 10px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    background-color: #f0f7ff;
+  }
+
+  /* 控制区域样式 */
+  .control-area {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: #f5f7fa;
+    border-radius: 12px;
+  }
+
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .speed-control label {
+    font-size: 20px;
+    color: #333;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  #speed-slider {
+    width: 200px;
+    cursor: pointer;
+    height: 8px;
+  }
+
+  #speed-value {
+    font-size: 20px;
+    color: #4096ff;
+    font-weight: 600;
+    min-width: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .char-tool-container h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .input-area,
+    .control-area {
+      margin-bottom: 25px;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      font-size: 18px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    #char-input,
+    #voice-select {
+      width: 100%;
+      font-size: 20px;
+      padding: 15px 20px;
+    }
+
+    .char-canvas {
+      width: 140px;
+      height: 140px;
+    }
+
+    .char-pinyin {
+      font-size: 22px;
+    }
+
+    .char-status {
+      font-size: 16px;
+    }
+
+    .global-tip {
+      font-size: 16px;
+    }
+
+    .speed-control {
+      width: 100%;
+      padding: 10px 15px;
+    }
+
+    #speed-slider {
+      width: 150px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .char-tool-container {
+      padding: 15px 10px;
+    }
+
+    .char-tool-container h1 {
+      font-size: 24px;
+    }
+
+    .char-canvas {
+      width: 120px;
+      height: 120px;
+    }
+
+    #chars-container {
+      gap: 15px;
+    }
+  }
+</style>
+
+<!-- 工具主体内容 -->
+<div class="char-tool-container">
+  <div class="input-area">
+    <input
+      type="text"
+      id="char-input"
+      placeholder="请输入中文文字（支持多个汉字）"
+      maxlength="15"
+    />
+    <select id="voice-select" disabled>
+      <option value="">选择语音</option>
+    </select>
+    <button id="start-btn" class="btn primary">
+      <i class="fas fa-play"></i> 开始写字
+    </button>
+    <button id="read-btn" class="btn success" disabled>
+      <i class="fas fa-volume-up"></i> 朗读文字
+    </button>
+  </div>
+
+  <!-- 控制区域 -->
+  <div class="control-area">
+    <div class="speed-control">
+      <label for="speed-slider">动画速度：</label>
+      <input
+        type="range"
+        id="speed-slider"
+        min="0.3"
+        max="5"
+        step="0.1"
+        value="1.2"
+      />
+      <span id="speed-value">1.2x</span>
+    </div>
+    <button id="pause-btn" class="btn secondary" disabled>
+      <i class="fas fa-pause"></i> 暂停
+    </button>
+    <button id="resume-btn" class="btn secondary" disabled>
+      <i class="fas fa-play"></i> 继续
+    </button>
+    <button id="replay-btn" class="btn secondary" disabled>
+      <i class="fas fa-redo"></i> 重播
+    </button>
+  </div>
+
+  <div class="animation-area">
+    <div id="chars-container"></div>
+  </div>
+
+  <div id="global-tip" class="global-tip">
+    提示：输入后点击按钮，汉字将横向排列并从左到右播放动画，支持拼音显示和朗读。多音字可点击拼音切换读音
+  </div>
+  <div id="speech-info" class="speech-info"></div>
+</div>
+
+<!-- 工具功能脚本 -->
+<script>
+  // 从pinyin-pro库获取pinyin函数
+  const { pinyin } = pinyinPro;
+
+  const charInput = document.getElementById("char-input");
+  const startBtn = document.getElementById("start-btn");
+  const readBtn = document.getElementById("read-btn");
+  const charsContainer = document.getElementById("chars-container");
+  const globalTip = document.getElementById("global-tip");
+  const speechInfo = document.getElementById("speech-info");
+  const voiceSelect = document.getElementById("voice-select");
+
+  // 控制元素
+  const speedSlider = document.getElementById("speed-slider");
+  const speedValue = document.getElementById("speed-value");
+  const pauseBtn = document.getElementById("pause-btn");
+  const resumeBtn = document.getElementById("resume-btn");
+  const replayBtn = document.getElementById("replay-btn");
+
+  let writerInstances = [];
+  let lastInputText = "";
+  let currentText = "";
+  let chineseVoices = [];
+  let selectedVoice = null;
+  // 存储每个汉字的拼音选项
+  let pinyinOptions = {};
+
+  // 动画控制变量
+  let animationSpeed = 1.2; // 默认速度
+  let strokeDelay = 400; // 笔画之间的延迟，会随速度变化
+  let isAnimationPlaying = false;
+  let currentAnimationIndex = 0;
+  let writersWithElements = [];
+  // 存储每个字的当前笔画进度
+  let strokeProgress = {};
+
+  // 检查浏览器是否支持语音合成
+  const speechSupported = "speechSynthesis" in window;
+  if (!speechSupported) {
+    readBtn.style.display = "none";
+    voiceSelect.style.display = "none";
+    globalTip.textContent =
+      "提示：您的浏览器不支持语音朗读功能，请使用最新版Chrome或Edge浏览器";
+  } else {
+    // 监听语音列表加载完成事件
+    window.speechSynthesis.onvoiceschanged = () => {
+      // 清空现有选项
+      voiceSelect.innerHTML = '<option value="">选择语音</option>';
+
+      // 获取所有可用语音
+      const voices = window.speechSynthesis.getVoices();
+      // 筛选中文语音
+      chineseVoices = voices.filter(
+        (voice) =>
+          voice.lang.includes("zh-CN") ||
+          voice.lang.includes("zh") ||
+          voice.name.includes("Chinese")
+      );
+
+      // 填充语音选择下拉菜单
+      chineseVoices.forEach((voice, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+
+      // 启用语音选择器
+      voiceSelect.disabled = chineseVoices.length === 0;
+
+      // 显示语音状态信息
+      if (chineseVoices.length > 0) {
+        speechInfo.textContent = `检测到 ${chineseVoices.length} 个中文语音可用，请选择需要使用的语音`;
+        // 默认选择第一个语音
+        if (chineseVoices.length > 0 && !selectedVoice) {
+          selectedVoice = chineseVoices[0];
+          voiceSelect.value = "0";
+        }
+      } else {
+        speechInfo.textContent = "未检测到中文语音包，朗读可能无法正常工作";
+        speechInfo.className = "speech-info error-tip";
+      }
+    };
+
+    // 监听语音选择变化
+    voiceSelect.addEventListener("change", (e) => {
+      const selectedIndex = e.target.value;
+      if (selectedIndex !== "") {
+        selectedVoice = chineseVoices[selectedIndex];
+        speechInfo.textContent = `已选择语音：${selectedVoice.name} (${selectedVoice.lang})`;
+      } else {
+        selectedVoice = null;
+        speechInfo.textContent = `请从 ${chineseVoices.length} 个可用语音中选择一个`;
+      }
+    });
+
+    // 主动触发一次语音列表更新（某些浏览器需要）
+    setTimeout(() => {
+      window.speechSynthesis.getVoices();
+    }, 100);
+  }
+
+  function clearPreviousAnimations(keepTip = false) {
+    writerInstances.forEach((writer) => {
+      if (writer) writer.pauseAnimation();
+    });
+    writerInstances = [];
+    writersWithElements = [];
+    charsContainer.innerHTML = "";
+    pinyinOptions = {};
+    strokeProgress = {}; // 清空进度记录
+    currentAnimationIndex = 0;
+    isAnimationPlaying = false;
+
+    // 重置控制按钮状态
+    updateControlButtons(false);
+
+    if (!keepTip) {
+      globalTip.className = "global-tip";
+      globalTip.textContent =
+        "提示：输入后点击按钮，汉字将横向排列并从左到右播放动画，支持拼音显示和朗读。多音字可点击拼音切换读音";
+    }
+    startBtn.disabled = false;
+    readBtn.disabled = !currentText;
+  }
+
+  // 获取带声调的汉字拼音，支持多音字处理
+  function getPinyinForText(text) {
+    try {
+      // 对于整个文本进行拼音转换，启用多音字识别
+      const result = pinyin(text, {
+        toneType: "symbol",
+        type: "array", // 返回数组形式
+        multiple: true, // 启用多音字识别
+      });
+
+      // 处理结果，提取每个字的拼音选项
+      const charPinyinMap = {};
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        // 对于多音字，会返回数组，否则返回字符串
+        if (Array.isArray(result[i])) {
+          // 去重处理
+          const uniquePinyins = [...new Set(result[i])];
+          charPinyinMap[i] = {
+            char,
+            options: uniquePinyins,
+            current: uniquePinyins[0],
+          };
+        } else {
+          charPinyinMap[i] = {
+            char,
+            options: [result[i]],
+            current: result[i],
+          };
+        }
+      }
+
+      return charPinyinMap;
+    } catch (error) {
+      console.error("获取拼音失败:", error);
+      return {};
+    }
+  }
+
+  function createCharItem(char, index, pinyinData) {
+    const charItem = document.createElement("div");
+    charItem.className = "char-item";
+    charItem.dataset.index = index;
+    charItem.dataset.char = char;
+
+    // 创建拼音显示区域
+    const pinyinContainer = document.createElement("div");
+    pinyinContainer.className = "char-pinyin";
+
+    const pinyinText = document.createElement("span");
+    pinyinText.textContent = pinyinData.current;
+
+    // 如果是多音字，添加下拉选项
+    const optionsContainer = document.createElement("div");
+    optionsContainer.className = "pinyin-options";
+
+    if (pinyinData.options.length > 1) {
+      pinyinData.options.forEach((pinyin) => {
+        const option = document.createElement("div");
+        option.className = "pinyin-option";
+        option.textContent = pinyin;
+        option.addEventListener("click", (e) => {
+          e.stopPropagation();
+          pinyinText.textContent = pinyin;
+          pinyinData.current = pinyin;
+          optionsContainer.style.display = "none";
+        });
+        optionsContainer.appendChild(option);
+      });
+
+      // 点击拼音显示/隐藏选项
+      pinyinContainer.addEventListener("click", () => {
+        optionsContainer.style.display =
+          optionsContainer.style.display === "block" ? "none" : "block";
+      });
+    }
+
+    pinyinContainer.appendChild(pinyinText);
+    pinyinContainer.appendChild(optionsContainer);
+
+    // 点击页面其他地方关闭选项
+    document.addEventListener("click", (e) => {
+      if (!pinyinContainer.contains(e.target)) {
+        optionsContainer.style.display = "none";
+      }
+    });
+
+    const canvasContainer = document.createElement("div");
+    canvasContainer.className = "char-canvas";
+    canvasContainer.id = `char-canvas-${index}`;
+
+    const statusText = document.createElement("div");
+    statusText.className = "char-status";
+    statusText.textContent = "准备中";
+
+    charItem.appendChild(pinyinContainer);
+    charItem.appendChild(canvasContainer);
+    charItem.appendChild(statusText);
+    charsContainer.appendChild(charItem);
+
+    const canvasStyle = window.getComputedStyle(canvasContainer);
+    const canvasWidth = parseInt(canvasStyle.width);
+    const canvasHeight = parseInt(canvasStyle.height);
+
+    // 初始化当前字的笔画进度
+    strokeProgress[index] = {
+      strokeIndex: 0,
+      progress: 0,
+    };
+
+    // 创建writer实例时使用当前的动画速度和延迟
+    const writer = HanziWriter.create(`char-canvas-${index}`, char, {
+      width: canvasWidth,
+      height: canvasHeight,
+      padding: 8,
+      showOutline: true,
+      strokeColor: "#2c3e50",
+      outlineColor: "#e0e0e0",
+      strokeAnimationSpeed: animationSpeed,
+      delayBetweenStrokes: strokeDelay,
+      onLoadCharDataSuccess: () => {
+        statusText.textContent = "等待播放";
+      },
+      onLoadCharDataError: () => {
+        statusText.className = "char-status error-tip";
+        statusText.textContent = "加载失败";
+        globalTip.className = "global-tip error-tip";
+        globalTip.textContent = `「${char}」加载失败，请尝试其他汉字`;
+      },
+      // 记录笔画进度的回调函数
+      onStrokeProgress: (strokeIdx, progress) => {
+        strokeProgress[index] = {
+          strokeIndex: strokeIdx,
+          progress: progress,
+        };
+      },
+    });
+
+    return { writer, statusText, charItem };
+  }
+
+  function playAnimationInOrder(writers, currentIndex = 0) {
+    if (currentIndex >= writers.length) {
+      globalTip.className = "global-tip success-tip";
+      globalTip.textContent = "所有汉字动画播放完成！";
+      startBtn.disabled = false;
+      lastInputText = charInput.value.trim();
+      isAnimationPlaying = false;
+      updateControlButtons(false);
+      return;
+    }
+
+    // 更新当前动画索引
+    currentAnimationIndex = currentIndex;
+
+    const { writer, statusText, charItem } = writers[currentIndex];
+    const char = charItem.dataset.char;
+    const index = parseInt(charItem.dataset.index);
+
+    globalTip.className = "global-tip success-tip";
+    globalTip.textContent = `正在播放第 ${currentIndex + 1}/${
+      writers.length
+    } 个字：「${char}」`;
+    statusText.className = "char-status success-tip";
+    statusText.textContent = "播放中";
+
+    isAnimationPlaying = true;
+    updateControlButtons(true);
+
+    // 动画参数中指定当前速度和延迟
+    writer.animateCharacter({
+      strokeAnimationSpeed: animationSpeed,
+      delayBetweenStrokes: strokeDelay,
+      // 使用我们自己记录的进度信息
+      startStroke: strokeProgress[index].strokeIndex,
+      startProgress: strokeProgress[index].progress,
+      onComplete: () => {
+        statusText.textContent = "已完成";
+        setTimeout(() => {
+          playAnimationInOrder(writers, currentIndex + 1);
+        }, strokeDelay * 0.5); // 字与字之间的延迟也随速度变化
+      },
+      // 更新进度记录
+      onStrokeProgress: (strokeIdx, progress) => {
+        strokeProgress[index] = {
+          strokeIndex: strokeIdx,
+          progress: progress,
+        };
+      },
+    });
+  }
+
+  // 暂停当前动画
+  function pauseCurrentAnimation() {
+    if (
+      !isAnimationPlaying ||
+      currentAnimationIndex >= writersWithElements.length
+    )
+      return;
+
+    const { writer } = writersWithElements[currentAnimationIndex];
+    writer.pauseAnimation();
+    isAnimationPlaying = false;
+
+    // 更新状态文本
+    const statusText = document.querySelector(
+      `.char-item[data-index="${currentAnimationIndex}"] .char-status`
+    );
+    if (statusText) {
+      statusText.textContent = "已暂停";
+    }
+
+    globalTip.textContent = `已暂停在第 ${currentAnimationIndex + 1}/${
+      writersWithElements.length
+    } 个字`;
+    updateControlButtons(false);
+  }
+
+  // 继续当前动画
+  function resumeCurrentAnimation() {
+    if (
+      isAnimationPlaying ||
+      currentAnimationIndex >= writersWithElements.length
+    )
+      return;
+
+    const { writer } = writersWithElements[currentAnimationIndex];
+    writer.resumeAnimation();
+    isAnimationPlaying = true;
+
+    // 更新状态文本
+    const statusText = document.querySelector(
+      `.char-item[data-index="${currentAnimationIndex}"] .char-status`
+    );
+    if (statusText) {
+      statusText.textContent = "播放中";
+    }
+
+    globalTip.textContent = `继续播放第 ${currentAnimationIndex + 1}/${
+      writersWithElements.length
+    } 个字`;
+    updateControlButtons(true);
+  }
+
+  // 重播动画
+  function replayAnimation() {
+    if (writersWithElements.length === 0) return;
+
+    // 先暂停所有动画
+    writerInstances.forEach((writer) => writer.pauseAnimation());
+
+    // 重置所有进度记录
+    Object.keys(strokeProgress).forEach((index) => {
+      strokeProgress[index] = {
+        strokeIndex: 0,
+        progress: 0,
+      };
+    });
+
+    // 重置所有汉字状态
+    document.querySelectorAll(".char-status").forEach((el) => {
+      el.className = "char-status";
+      el.textContent = "等待播放";
+    });
+
+    // 重新开始播放
+    playAnimationInOrder(writersWithElements);
+  }
+
+  // 更新控制按钮状态
+  function updateControlButtons(isPlaying) {
+    pauseBtn.disabled = !isPlaying;
+    resumeBtn.disabled = isPlaying;
+    replayBtn.disabled = writersWithElements.length === 0;
+  }
+
+  // 优化的朗读功能，使用用户选择的拼音
+  function readTextWithSelectedPinyin() {
+    if (!speechSupported || !currentText) return;
+
+    // 检查是否选择了语音
+    if (!selectedVoice && chineseVoices.length > 0) {
+      selectedVoice = chineseVoices[0];
+      voiceSelect.value = "0";
+    }
+
+    if (!selectedVoice) {
+      globalTip.className = "global-tip error-tip";
+      globalTip.textContent = "请先选择一个可用的中文语音";
+      return;
+    }
+
+    // 停止任何正在进行的朗读
+    window.speechSynthesis.cancel();
+
+    try {
+      // 创建带拼音的朗读文本，用于提示
+      let pinyinText = "";
+      for (let i = 0; i < currentText.length; i++) {
+        if (pinyinOptions[i]) {
+          pinyinText += `${currentText[i]}[${pinyinOptions[i].current}] `;
+        } else {
+          pinyinText += currentText[i];
+        }
+      }
+
+      const utterance = new SpeechSynthesisUtterance(currentText);
+
+      // 使用用户选择的语音
+      utterance.voice = selectedVoice;
+
+      // 优化语音参数 - 语速随动画速度同步变化
+      utterance.rate = Math.min(2, Math.max(0.5, animationSpeed * 0.8));
+      utterance.pitch = 1.0; // 音调
+      utterance.volume = 1.0; // 音量
+
+      // 开始朗读
+      window.speechSynthesis.speak(utterance);
+
+      // 更新提示
+      globalTip.className = "global-tip success-tip";
+      globalTip.textContent = `正在用 ${selectedVoice.name} 朗读：${pinyinText}`;
+
+      // 朗读结束时更新提示
+      utterance.onend = () => {
+        globalTip.className = "global-tip";
+        globalTip.textContent = `已用 ${selectedVoice.name} 朗读完成：${pinyinText}`;
+      };
+
+      // 更详细的错误处理
+      utterance.onerror = (event) => {
+        let errorMsg = "朗读失败：";
+        switch (event.error) {
+          case "canceled":
+            errorMsg += "朗读被取消";
+            break;
+          case "not-allowed":
+            errorMsg += "没有朗读权限，请检查浏览器设置";
+            break;
+          case "audio-capture":
+            errorMsg += "音频捕获失败";
+            break;
+          case "synthesis-failed":
+            errorMsg += `使用 ${selectedVoice.name} 语音合成失败`;
+            errorMsg += "<br>请尝试选择其他语音或检查语音包";
+            break;
+          default:
+            errorMsg += event.error;
+        }
+        globalTip.className = "global-tip error-tip";
+        globalTip.innerHTML = errorMsg;
+      };
+    } catch (error) {
+      globalTip.className = "global-tip error-tip";
+      globalTip.textContent = `朗读发生错误：${error.message}`;
+      console.error("朗读错误:", error);
+    }
+  }
+
+  // 尝试修复语音合成的函数
+  function tryFixSpeechSynthesis() {
+    if (!speechSupported) return false;
+
+    try {
+      // 某些浏览器需要先触发一次空的合成才能正常工作
+      const testUtterance = new SpeechSynthesisUtterance("测试");
+      testUtterance.volume = 0; // 静音测试
+      window.speechSynthesis.speak(testUtterance);
+
+      // 强制刷新语音列表
+      window.speechSynthesis.getVoices();
+      return true;
+    } catch (error) {
+      console.error("尝试修复语音合成失败:", error);
+      return false;
+    }
+  }
+
+  startBtn.addEventListener("click", () => {
+    let inputText = charInput.value.trim() || lastInputText;
+    if (!inputText) {
+      globalTip.className = "global-tip error-tip";
+      globalTip.textContent = "错误：请输入中文文字！";
+      return;
+    }
+    if (!isChinese(inputText)) {
+      globalTip.className = "global-tip error-tip";
+      globalTip.textContent = "错误：仅支持中文汉字，请重新输入！";
+      return;
+    }
+
+    // 保存当前文本用于朗读
+    currentText = inputText;
+    readBtn.disabled = false;
+
+    clearPreviousAnimations(true);
+    startBtn.disabled = true;
+    const charList = inputText.split("");
+
+    // 一次性获取整个文本的拼音，支持上下文分析
+    pinyinOptions = getPinyinForText(inputText);
+
+    charList.forEach((char, index) => {
+      const pinyinData = pinyinOptions[index] || {
+        options: [getPinyin(char)],
+        current: getPinyin(char),
+      };
+      const charData = createCharItem(char, index, pinyinData);
+      writersWithElements.push(charData);
+      writerInstances.push(charData.writer);
+    });
+
+    setTimeout(() => {
+      playAnimationInOrder(writersWithElements);
+    }, 150);
+  });
+
+  // 绑定朗读按钮事件
+  readBtn.addEventListener("click", () => {
+    if (currentText) {
+      // 先检查是否有可用的中文语音
+      if (speechSupported && chineseVoices.length === 0) {
+        globalTip.className = "global-tip error-tip";
+        globalTip.textContent = "未检测到中文语音包，正在尝试修复...";
+
+        // 尝试修复语音问题
+        if (tryFixSpeechSynthesis()) {
+          setTimeout(() => {
+            readTextWithSelectedPinyin();
+          }, 500);
+        } else {
+          globalTip.innerHTML =
+            "未检测到中文语音包<br>请在浏览器设置中安装中文语音或使用Chrome浏览器";
+        }
+      } else {
+        readTextWithSelectedPinyin();
+      }
+    }
+  });
+
+  // 速度控制事件
+  speedSlider.addEventListener("input", (e) => {
+    animationSpeed = parseFloat(e.target.value);
+    // 计算笔画之间的延迟，速度越快延迟越小
+    strokeDelay = Math.floor(800 / animationSpeed);
+    speedValue.textContent = `${animationSpeed.toFixed(1)}x`;
+
+    // 如果动画正在播放，实时更新当前动画的速度
+    if (
+      isAnimationPlaying &&
+      currentAnimationIndex < writersWithElements.length
+    ) {
+      const { writer, charItem } =
+        writersWithElements[currentAnimationIndex];
+      const index = parseInt(charItem.dataset.index);
+
+      // 暂停当前动画
+      writer.pauseAnimation();
+
+      // 使用我们自己记录的进度信息重新开始动画
+      writer.animateCharacter({
+        strokeAnimationSpeed: animationSpeed,
+        delayBetweenStrokes: strokeDelay,
+        startStroke: strokeProgress[index].strokeIndex,
+        startProgress: strokeProgress[index].progress,
+        onComplete: () => {
+          const statusText = document.querySelector(
+            `.char-item[data-index="${currentAnimationIndex}"] .char-status`
+          );
+          if (statusText) {
+            statusText.textContent = "已完成";
+          }
+          setTimeout(() => {
+            playAnimationInOrder(
+              writersWithElements,
+              currentAnimationIndex + 1
+            );
+          }, strokeDelay * 0.5);
+        },
+        // 更新进度记录
+        onStrokeProgress: (strokeIdx, progress) => {
+          strokeProgress[index] = {
+            strokeIndex: strokeIdx,
+            progress: progress,
+          };
+        },
+      });
+    }
+  });
+
+  // 暂停按钮事件
+  pauseBtn.addEventListener("click", pauseCurrentAnimation);
+
+  // 继续按钮事件
+  resumeBtn.addEventListener("click", resumeCurrentAnimation);
+
+  // 重播按钮事件
+  replayBtn.addEventListener("click", replayAnimation);
+
+  function isChinese(str) {
+    const reg = /^[\u4e00-\u9fa5]+$/;
+    return reg.test(str.trim());
+  }
+
+  // 单个汉字获取拼音的备用方法
+  function getPinyin(char) {
+    try {
+      return pinyin(char, { toneType: "symbol" });
+    } catch (error) {
+      console.error("获取拼音失败:", error);
+      return "";
+    }
+  }
+
+  charInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      startBtn.click();
+      charInput.blur();
+    }
+  });
+
+  charInput.addEventListener("input", () => {
+    const inputText = charInput.value.trim();
+    readBtn.disabled = !inputText || !isChinese(inputText);
+    if (inputText) {
+      currentText = inputText;
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (writerInstances.length > 0 || lastInputText) {
+      clearPreviousAnimations(true);
+      globalTip.className = "global-tip";
+      globalTip.textContent = `屏幕尺寸已调整，可直接点击「开始笔画动画」（已保留上次输入：${
+        lastInputText || "无"
+      }）`;
+      startBtn.disabled = false;
+    }
+  });
+
+  window.addEventListener("load", () => {
+    if (lastInputText) {
+      charInput.value = lastInputText;
+      currentText = lastInputText;
+      readBtn.disabled = false;
+      globalTip.textContent = `已恢复上次输入：${lastInputText}，点击按钮即可播放`;
+    }
+
+    // 初始化速度显示
+    speedValue.textContent = `${animationSpeed.toFixed(1)}x`;
+
+    // 页面加载时尝试初始化语音合成
+    if (speechSupported) {
+      tryFixSpeechSynthesis();
+    }
+  });
+</script>
+
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/yuxiaoxiong.gif" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/yuxiaoxiong.gif" title="头像" alt="头像"></a><div class="post-copyright__author_name">鱼小熊</div><div class="post-copyright__author_desc">生在井隅 心向星光</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/')">汉字笔画动画工具</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=汉字笔画动画工具&amp;url=http://www.blog.yuxiaoxiong.com/2025/09/05/bihua/&amp;pic=https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.blog.yuxiaoxiong.com" target="_blank">鱼小熊</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E6%B1%89%E5%AD%97/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>汉字<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E7%AC%94%E7%94%BB/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>笔画<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E5%8A%A8%E7%94%BB/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>动画<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/09/20/free-font/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">免费商用字体</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/yuxiaoxiong.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2021/01/15/d9347f35566e9.gif" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、建模</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">鱼小熊</h1><div class="author-info__desc">生在井隅 心向星光</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/anzhiyu-c" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/381415359" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">有问题请直接留言或添加QQ和微信。（上班忙可能没时间）~</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div class="container"><div class="left-container"><div class="week-number" id="week-number">第0周</div><div class="current-date" id="current-date">00</div><div class="lunar-year" id="lunar-year">农历年份获取中...</div><div class="lunar-date" id="lunar-date">农历获取中...</div></div><div class="right-container"><div class="week-days"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div><div class="calendar" id="calendar"></div><div class="flip-clock" id="clock-container"><div class="digit" id="hours"><div class="card top">00</div><div class="card bottom">00</div><div class="flipper card top">00</div></div><div class="digit" id="minutes"><div class="card top">00</div><div class="card bottom">00</div><div class="flipper card top">00</div></div><div class="digit" id="seconds"><div class="card top">00</div><div class="card bottom">00</div><div class="flipper card top">00</div></div></div></div></div> <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/source/lunar.js"></script><script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/source/script.js"></script> <div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/05/bihua/" title="汉字笔画动画工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汉字笔画动画工具"/></a><div class="content"><a class="title" href="/2025/09/05/bihua/" title="汉字笔画动画工具">汉字笔画动画工具</a><time datetime="2025-09-04T16:00:00.000Z" title="发表于 2025-09-05 00:00:00">2025-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/20/free-font/" title="免费商用字体"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/20210422162709.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="免费商用字体"/></a><div class="content"><a class="title" href="/2024/09/20/free-font/" title="免费商用字体">免费商用字体</a><time datetime="2024-09-20T08:25:00.000Z" title="发表于 2024-09-20 16:25:00">2024-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/20/corona/" title="Corona渲染器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/corona.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Corona渲染器"/></a><div class="content"><a class="title" href="/2024/09/20/corona/" title="Corona渲染器">Corona渲染器</a><time datetime="2024-09-20T02:25:00.000Z" title="发表于 2024-09-20 10:25:00">2024-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/Arnold/" title="Arnold渲染器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/arnold.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Arnold渲染器"/></a><div class="content"><a class="title" href="/2024/09/19/Arnold/" title="Arnold渲染器">Arnold渲染器</a><time datetime="2024-09-19T09:45:00.000Z" title="发表于 2024-09-19 17:45:00">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/Vray/" title="Vray渲染器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/vray.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vray渲染器"/></a><div class="content"><a class="title" href="/2024/09/19/Vray/" title="Vray渲染器">Vray渲染器</a><time datetime="2024-09-19T09:25:00.000Z" title="发表于 2024-09-19 17:25:00">2024-09-19</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:wjzcd2011@163.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/6378063631" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/yuxiaoxiong.gif" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/381415359" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">直达云上</div><div class="footer-links"><a class="footer-item" title="我的主页" href="/_blank">我的主页</a><a class="footer-item" title="随机传送" href="/random.html">随机传送</a><a class="footer-item" title="哔哩哔哩" target="_blank" rel="noopener" href="https://space.bilibili.com/381415359">哔哩哔哩</a><a class="footer-item" title="网易音乐" target="_blank" rel="noopener" href="https://music.163.com/#/artist?id=52973735">网易音乐</a></div></div><div class="footer-group"><div class="footer-title">技术论坛</div><div class="footer-links"><a class="footer-item" title="IT之家" target="_blank" rel="noopener" href="http://www.ithome.com">IT之家</a><a class="footer-item" title="安安兔" target="_blank" rel="noopener" href="https://www.antutu.com">安安兔</a><a class="footer-item" title="每日科技网" target="_blank" rel="noopener" href="https://www.newskj.org">每日科技网</a><a class="footer-item" title="中关村" target="_blank" rel="noopener" href="https://www.zol.com.cn">中关村</a></div></div><div class="footer-group"><div class="footer-title">设计素材</div><div class="footer-links"><a class="footer-item" title="FreepiK" target="_blank" rel="noopener" href="https://www.freepik.com">FreepiK</a><a class="footer-item" title="UIstore" target="_blank" rel="noopener" href="https://www.uistore.design">UIstore</a><a class="footer-item" title="样机模板" target="_blank" rel="noopener" href="https://www.ls.graphics/free-mockups">样机模板</a><a class="footer-item" title="爱给网" target="_blank" rel="noopener" href="https://www.aigei.com">爱给网</a></div></div><div class="footer-group"><div class="footer-title">素材网</div><div class="footer-links"><a class="footer-item" title="优设网" target="_blank" rel="noopener" href="https://www.uisdc.com">优设网</a><a class="footer-item" title="Behance" target="_blank" rel="noopener" href="https://www.behance.net">Behance</a><a class="footer-item" title="Pinterest" target="_blank" rel="noopener" href="http://www.pinterest.com">Pinterest</a><a class="footer-item" title="Siteinspire" target="_blank" rel="noopener" href="https://www.siteinspire.com">Siteinspire</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2025 By <a class="footer-bar-link" href="/" title="鱼小熊" target="_blank">鱼小熊</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
+    jinrishici.load(result =>{
+      if (true) {
+        const sub = []
+        const content = result.data.content
+        sub.unshift(content)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = result.data.content
+      }
+    })
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link cc" href="/copyright" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">12</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/daohang/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 设计导航</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 乐坊</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/gallery/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/books/"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> 书籍</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/3dmax/" style="font-size: 0.88rem;">3dmax<sup>1</sup></a><a href="/tags/3%E7%BB%B4%E8%BD%AF%E4%BB%B6/" style="font-size: 0.88rem;">3维软件<sup>2</sup></a><a href="/tags/AE/" style="font-size: 0.88rem;">AE<sup>2</sup></a><a href="/tags/AE%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">AE教程<sup>1</sup></a><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>1</sup></a><a href="/tags/Adobe-Premiere/" style="font-size: 0.88rem;">Adobe Premiere<sup>1</sup></a><a href="/tags/Ai/" style="font-size: 0.88rem;">Ai<sup>2</sup></a><a href="/tags/Arnold/" style="font-size: 0.88rem;">Arnold<sup>1</sup></a><a href="/tags/Astute-Graphics/" style="font-size: 0.88rem;">Astute_Graphics<sup>1</sup></a><a href="/tags/Corona/" style="font-size: 0.88rem;">Corona<sup>1</sup></a><a href="/tags/Lightroom/" style="font-size: 0.88rem;">Lightroom<sup>1</sup></a><a href="/tags/MAC%E7%B3%BB%E7%BB%9F/" style="font-size: 0.88rem;">MAC系统<sup>4</sup></a><a href="/tags/c4d/" style="font-size: 0.88rem;">c4d<sup>3</sup></a><a href="/tags/ps/" style="font-size: 0.88rem;">ps<sup>2</sup></a><a href="/tags/vray/" style="font-size: 0.88rem;">vray<sup>1</sup></a><a href="/tags/win%E7%B3%BB%E7%BB%9F/" style="font-size: 0.88rem;">win系统<sup>6</sup></a><a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 0.88rem;">动画<sup>1</sup></a><a href="/tags/%E5%AD%97%E4%BD%93/" style="font-size: 0.88rem;">字体<sup>4</sup></a><a href="/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">实用工具<sup>1</sup></a><a href="/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">小工具<sup>3</sup></a><a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 0.88rem;">插件<sup>7</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 0.88rem;">操作系统<sup>1</sup></a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">教程<sup>3</sup></a><a href="/tags/%E6%9D%8E%E6%B6%9B/" style="font-size: 0.88rem;">李涛<sup>1</sup></a><a href="/tags/%E6%B1%89%E5%AD%97/" style="font-size: 0.88rem;">汉字<sup>1</sup></a><a href="/tags/%E6%B8%B2%E6%9F%93%E5%99%A8/" style="font-size: 0.88rem;">渲染器<sup>3</sup></a><a href="/tags/%E7%AC%94%E7%94%BB/" style="font-size: 0.88rem;">笔画<sup>1</sup></a><a href="/tags/%E7%BB%BF%E8%89%B2%E8%BD%AF%E4%BB%B6/" style="font-size: 0.88rem;">绿色软件<sup>2</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6/" style="font-size: 0.88rem;">设计软件<sup>11</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="2082465615" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 鱼小熊 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.lpxyr0206.com/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.lpxyr0206.com/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.lpxyr0206.com/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "wjzcd2011@163.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'oBK1Ndvdy1z';</script><script src="https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.14/tianli_gpt.min.js"></script><script async src="/js/waterfall.js"></script><script defer src="/js/essay.js"></script><script async src="/js/MemorialDayMode.js"></script><script src="/js/txmap.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
