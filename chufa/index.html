@@ -4,76 +4,449 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>竖式乘除法计算器</title>
+    <title>小学生竖式乘除法计算器</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style type="text/tailwindcss">
       @layer utilities {
-        /* 乘法核心样式（包括横线） */
+        /* 乘法核心样式 */
         .multiplication-vertical {
           font-family: "Caveat", cursive;
           font-size: 1.8rem;
           line-height: 1.8;
           display: inline-block;
           position: relative;
-          padding-left: 40px;
+          padding-left: 20px;
+        }
+        .multiplicand-digit,
+        .multiplier-digit {
+          display: inline-block;
+          width: 40px;
+          text-align: right;
+          position: relative;
+        }
+        .multiplication-vertical .carry {
+          position: absolute;
+          left: calc(5px - (var(--position) * 40px));
+          bottom: -50px;
+          color: #ff4d4f;
+          font-weight: bold;
+          font-size: 1rem;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.5s ease;
+        }
+        .multiplication-vertical .carry.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        /* 乘法横线样式 */
+        .multiplication-line {
+          border-bottom: 2px solid #165dff;
+          margin: 8px 0;
+          width: 0;
+          margin-left: auto;
+          margin-right: auto;
+          transition: width 0.3s ease;
+        }
+        /* 动态部分积样式 */
+        .partial-product {
+          margin-left: calc(
+            var(--single-digit-width) * var(--digit-offset) * -2
+          );
+          letter-spacing: calc(var(--single-digit-width) * 0.6);
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.5s ease;
+        }
+        .partial-product.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        /* 乘法结果样式 */
+        .multiplication-result {
+          margin-left: calc(var(--result-offset) * 1px);
+          font-weight: bold;
+          letter-spacing: 25px;
+          padding-right: 20px;
+          opacity: 0;
+          transition: opacity 0.5s ease 0.3s;
+          color: #165dff;
+        }
+        .multiplication-result.visible {
+          opacity: 1;
+        }
+        /* 除法样式 */
+        .division-bar {
+          position: relative;
+          display: inline-block;
+          padding-left: 24px;
+        }
+        .division-bar::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 12px;
+          width: 2px;
+          height: 100%;
+          background: #52c41a;
+        }
+        .division-bar::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 12px;
+          width: calc(150%);
+          height: 2px;
+          background: #52c41a;
+        }
+        .carry-digit {
+          color: #ff4d4f;
+          font-weight: bold;
+        }
+        .divisor {
+          position: absolute;
+          left: -20px;
+          top: 0;
+          line-height: 1;
+        }
+        .full-dividend {
+          position: relative;
+          z-index: 10;
+        }
+        .group-2 {
+          margin-left: 0.5rem;
+        }
+        .group-3 {
+          margin-left: 1rem;
+        }
+        .group-4 {
+          margin-left: 1.5rem;
+        }
+
+        /* 公式标签 */
+        .formula-tag {
+          cursor: pointer;
+          padding: 4px 8px;
+          border-radius: 4px;
+          margin-right: 8px;
+          transition: all 0.2s;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-weight: 500;
+        }
+        .formula-tag.multiplication {
+          background-color: #e6f7ff;
+          color: #1890ff;
+        }
+        .formula-tag.multiplication:hover {
+          background-color: #1890ff;
+          color: white;
+        }
+        .formula-tag.division {
+          background-color: #f6ffed;
+          color: #52c41a;
+        }
+        .formula-tag.division:hover {
+          background-color: #52c41a;
+          color: white;
+        }
+        .formula-tag:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 模态框样式 */
+        .modal {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1000;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          backdrop-filter: blur(5px);
+        }
+        .modal-content {
+          background-color: white;
+          padding: 24px;
+          border-radius: 12px;
+          max-width: 90%;
+          max-height: 90%;
+          overflow-y: auto;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          transform: translateY(-20px);
+          opacity: 0;
+          min-width: 300px;
+          max-width: 1000px;
+        }
+        @media (min-width: 768px) {
+          .modal-content {
+            min-width: 700px;
+          }
+          .formula-table {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+          }
+          .formula-item {
+            height: 45px;
+            font-size: 16px;
+          }
+        }
+        .modal.active .modal-content {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        .close-btn {
+          float: right;
+          font-size: 24px;
+          cursor: pointer;
+          padding: 0 8px;
+          color: #666;
+          transition: all 0.2s;
+        }
+        .close-btn:hover {
+          color: #ff4d4f;
+          transform: rotate(90deg);
+        }
+
+        /* 公式表格 */
+        .formula-table {
+          margin-top: 20px;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: 8px;
+        }
+        .formula-item {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 6px;
+          font-size: 15px;
+          transition: all 0.2s;
+          cursor: pointer;
+          border: 1px solid transparent;
+        }
+        .formula-item:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .formula-item.multiplication {
+          background-color: #f0f7ff;
+          border-left: 3px solid #1890ff;
+        }
+        .formula-item.multiplication:hover {
+          background-color: #e6f7ff;
+          border-color: #91d5ff;
+        }
+        .formula-item.division {
+          background-color: #f6ffed;
+          border-left: 3px solid #52c41a;
+        }
+        .formula-item.division:hover {
+          background-color: #e6f7ff;
+          border-color: #b7eb8f;
+        }
+        .formula-item .icon {
+          margin-right: 6px;
+          font-size: 12px;
+        }
+
+        /* 其他样式 */
+        #vertical {
+          text-align: center;
+          margin: 0 auto;
+          max-width: 90%;
+          padding: 0 10px;
+        }
+        .modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 15px;
+          border-bottom: 1px solid #e2e8f0;
+          padding-bottom: 10px;
+        }
+        .modal-title {
+          font-size: 20px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .modal-title i {
+          font-size: 22px;
+        }
+        .multiplication-title i {
+          color: #1890ff;
+        }
+        .division-title i {
+          color: #52c41a;
+        }
+        /* 按钮样式 */
+        #calcBtn {
+          transition: all 0.3s ease;
+          transform: translateY(0);
+        }
+        #calcBtn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
+        }
+        #calcBtn:active {
+          transform: translateY(0);
+        }
+        /* 输入框样式 */
+        input[type="number"] {
+          transition: all 0.3s ease;
+        }
+        input[type="number"]:focus {
+          border-color: #165dff;
+          box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.2);
+          outline: none;
+        }
+        /* 结果区域 */
+        #result {
+          animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        /* 推理过程样式 */
+        #explanation {
+          background-color: #f9fafb;
+          padding: 1rem;
+          border-radius: 8px;
+          border-left: 3px solid #165dff;
+        }
+        #explanation h3 {
+          color: #165dff;
+        }
+        #explanation li {
+          transition: all 0.2s ease;
+        }
+        #explanation li:hover {
+          color: #165dff;
+          transform: translateX(3px);
+        }
+        /* 选择框样式 */
+        select#operator {
+          color: #165dff;
+          font-weight: bold;
+          padding: 0 0.5rem;
+        }
+        /* 小学生提示模块 */
+        .student-note {
+          background-color: #fff8e6;
+          border-left: 4px solid #faad14;
+          padding: 12px 16px;
+          margin-bottom: 1rem;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .student-note i {
+          color: #faad14;
+          font-size: 1.2rem;
+        }
+        .student-note p {
+          margin: 0;
+          color: #854d27;
+          font-size: 0.95rem;
         }
       }
     </style>
     <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/styles.css"
     />
   </head>
-  <body class="bg-gray-50 p-4 md:p-8">
-    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
-      <!-- 口诀标签 -->
-      <div class="mb-4">
-        <span class="formula-tag" onclick="showModal('multiplication')"
-          >乘法口诀</span
-        >
-        <span class="formula-tag" onclick="showModal('division')"
-          >除法口诀</span
-        >
+  <body
+    class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-4 md:p-8"
+  >
+    <div
+      class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-xl"
+    >
+      <!-- 小学生提示模块 -->
+      <div class="student-note">
+        <i class="fas fa-lightbulb"></i>
+        <p>
+          📚 这是专为小学生设计的数学工具，帮助你学习乘法和除法的竖式计算方法。
+        </p>
       </div>
 
-      <h1 class="text-3xl font-bold text-center mb-6 text-indigo-600">
-        竖式乘除法计算器
+      <!-- 口诀标签 -->
+      <div class="mb-6">
+        <span
+          class="formula-tag multiplication"
+          onclick="showModal('multiplication')"
+        >
+          <i class="fas fa-multiply"></i> 乘法口诀
+        </span>
+        <span class="formula-tag division" onclick="showModal('division')">
+          <i class="fas fa-divide"></i> 除法口诀
+        </span>
+      </div>
+
+      <h1
+        class="text-3xl md:text-4xl font-bold text-center mb-8 text-indigo-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
+      >
+        小学生竖式乘除法计算器
       </h1>
 
-      <!-- 输入区域 - 修改为一行布局 -->
-      <div class="flex flex-wrap items-end gap-4 mb-6">
+      <!-- 输入区域 -->
+      <div
+        class="flex flex-wrap items-end gap-4 mb-8 p-6 bg-gray-50 rounded-lg"
+      >
         <div style="width: 25%">
-          <div id="num1Label" class="block text-gray-700 mb-1">乘数1</div>
+          <div id="num1Label" class="block text-gray-700 mb-1 font-medium">
+            被乘数
+          </div>
           <input
             type="number"
             id="num1"
-            class="w-full px-3 py-2 border border-gray-300 rounded"
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200"
             placeholder="例如：15"
           />
         </div>
-        <div class="text-xl font-bold">
+        <div class="text-2xl font-bold">
           <select id="operator" class="border-none bg-transparent text-xl">
             <option value="multiply">×</option>
             <option value="divide">÷</option>
           </select>
         </div>
         <div style="width: 25%">
-          <div id="num2Label" class="block text-gray-700 mb-1">乘数2</div>
+          <div id="num2Label" class="block text-gray-700 mb-1 font-medium">
+            乘数
+          </div>
           <input
             type="number"
             id="num2"
-            class="w-full px-3 py-2 border border-gray-300 rounded"
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200"
             placeholder="例如：12"
           />
         </div>
         <div>
           <button
             id="calcBtn"
-            class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+            class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg hover:bg-indigo-700 font-medium"
           >
             计算
           </button>
@@ -82,19 +455,25 @@
 
       <div
         id="error"
-        class="hidden text-red-500 mb-4 p-2 bg-red-50 rounded"
+        class="hidden text-red-500 mb-6 p-3 bg-red-50 rounded-lg border border-red-100"
       ></div>
 
       <div id="result" class="hidden">
-        <h2 id="processTitle" class="text-xl font-semibold mb-3">
+        <h2
+          id="processTitle"
+          class="text-xl font-semibold mb-4 pb-2 border-b border-gray-100"
+        >
           乘法计算过程：
         </h2>
-        <div id="vertical" class="mb-4"></div>
-        <div class="p-3 bg-gray-50 rounded">
-          <p>
+        <div
+          id="vertical"
+          class="mb-6 p-4 bg-gray-50 rounded-lg min-h-[150px] flex items-center justify-center"
+        ></div>
+        <div class="p-4 bg-gray-50 rounded-lg mb-4">
+          <p class="text-lg">
             结果：<span
               id="finalResult"
-              class="font-semibold text-indigo-600"
+              class="font-semibold text-indigo-600 text-xl"
             ></span>
           </p>
         </div>
@@ -104,10 +483,14 @@
     <!-- 乘法口诀弹窗 -->
     <div id="multiplication-modal" class="modal">
       <div class="modal-content">
-        <span class="close-btn" onclick="hideModal('multiplication')"
-          >&times;</span
-        >
-        <h3 class="text-xl font-bold mb-2">乘法口诀表</h3>
+        <div class="modal-header">
+          <h3 class="modal-title multiplication-title">
+            <i class="fas fa-multiply"></i> 乘法口诀表
+          </h3>
+          <span class="close-btn" onclick="hideModal('multiplication')"
+            >&times;</span
+          >
+        </div>
         <div id="multiplication-table" class="formula-table"></div>
       </div>
     </div>
@@ -115,16 +498,675 @@
     <!-- 除法口诀弹窗 -->
     <div id="division-modal" class="modal">
       <div class="modal-content">
-        <span class="close-btn" onclick="hideModal('division')">&times;</span>
-        <h3 class="text-xl font-bold mb-2">除法口诀表</h3>
+        <div class="modal-header">
+          <h3 class="modal-title division-title">
+            <i class="fas fa-divide"></i> 除法口诀表
+          </h3>
+          <span class="close-btn" onclick="hideModal('division')">&times;</span>
+        </div>
         <div id="division-table" class="formula-table"></div>
       </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img/main.js"
-      defer
-    ></script>
+    <script>
+      // 生成乘法口诀表
+      function generateMultiplicationTable() {
+        const table = document.getElementById("multiplication-table");
+        table.innerHTML = "";
+        for (let i = 1; i <= 9; i++) {
+          for (let j = 1; j <= i; j++) {
+            const item = document.createElement("div");
+            item.className = "formula-item multiplication";
+            item.innerHTML = `${j}×${i}=${j * i}`;
+            item.addEventListener("click", () => {
+              document.getElementById("num1").value = j;
+              document.getElementById("num2").value = i;
+              document.getElementById("operator").value = "multiply";
+              hideModal("multiplication");
+              calc();
+            });
+            table.appendChild(item);
+          }
+        }
+      }
+
+      // 生成除法口诀表
+      function generateDivisionTable() {
+        const table = document.getElementById("division-table");
+        table.innerHTML = "";
+
+        const divisionData = [
+          [1],
+          [2, 4],
+          [3, 6, 9],
+          [4, 8, 12, 16],
+          [5, 10, 15, 20, 25],
+          [6, 12, 18, 24, 30, 36],
+          [7, 14, 21, 28, 35, 42, 49],
+          [8, 16, 24, 32, 40, 48, 56, 64],
+          [9, 18, 27, 36, 45, 54, 63, 72, 81],
+        ];
+
+        divisionData.forEach((row, index) => {
+          const divisor = index + 1;
+          row.forEach((dividend) => {
+            const item = document.createElement("div");
+            item.className = "formula-item division";
+            item.innerHTML = ` ${dividend}÷${divisor}=${dividend / divisor}`;
+            item.addEventListener("click", () => {
+              document.getElementById("num1").value = dividend;
+              document.getElementById("num2").value = divisor;
+              document.getElementById("operator").value = "divide";
+              hideModal("division");
+              calc();
+            });
+            table.appendChild(item);
+          });
+        });
+      }
+
+      // 模态框控制
+      function showModal(type) {
+        const modal = document.getElementById(`${type}-modal`);
+        modal.style.display = "flex";
+        setTimeout(() => modal.classList.add("active"), 10);
+      }
+      function hideModal(type) {
+        const modal = document.getElementById(`${type}-modal`);
+        modal.classList.remove("active");
+        setTimeout(() => (modal.style.display = "none"), 300);
+      }
+      window.onclick = function (event) {
+        const modals = document.getElementsByClassName("modal");
+        for (let i = 0; i < modals.length; i++) {
+          if (event.target == modals[i]) {
+            modals[i].classList.remove("active");
+            setTimeout(() => (modals[i].style.display = "none"), 300);
+          }
+        }
+      };
+
+      // 动态切换输入框标签
+      document
+        .getElementById("operator")
+        .addEventListener("change", function () {
+          const num1Label = document.getElementById("num1Label");
+          const num2Label = document.getElementById("num2Label");
+          if (this.value === "multiply") {
+            num1Label.textContent = "被乘数";
+            num2Label.textContent = "乘数";
+          } else {
+            num1Label.textContent = "被除数";
+            num2Label.textContent = "除数";
+          }
+        });
+
+      // 初始化
+      window.onload = function () {
+        generateMultiplicationTable();
+        generateDivisionTable();
+      };
+
+      // 格式处理
+      function formatNumber(num) {
+        if (Number.isInteger(num)) return num.toString();
+        return num
+          .toString()
+          .replace(/(\.\d*?)0+$/, "$1")
+          .replace(/\.$/, "");
+      }
+
+      // 计算乘法横线的动态宽度
+      function calculateMultiplicationLineWidth() {
+        const verticalEl = document.getElementById("vertical");
+        const targetElements = verticalEl.querySelectorAll(
+          ".multiplicand-digit, .partial-product, .multiplication-result"
+        );
+
+        let maxWidth = 0;
+        targetElements.forEach((el) => {
+          const elementWidth = el.offsetWidth;
+          if (elementWidth > maxWidth) {
+            maxWidth = elementWidth;
+          }
+        });
+
+        const dynamicWidth = Math.max(maxWidth + 60, 200);
+        const lines = verticalEl.querySelectorAll(".multiplication-line");
+        lines.forEach((line) => {
+          line.style.width = `${dynamicWidth}px`;
+        });
+        return dynamicWidth;
+      }
+
+      // 逐位显示乘法动画
+      function animateMultiplicationSteps(data) {
+        const { carryDetails, partProducts } = data;
+        const verticalEl = document.getElementById("vertical");
+        const lines = verticalEl.querySelectorAll(".multiplication-line");
+
+        // 显示第一条横线
+        setTimeout(() => {
+          lines[0].style.width = calculateMultiplicationLineWidth() + "px";
+        }, 1000);
+
+        // 逐个显示部分积和对应的进位，同时隐藏上一位的进位
+        carryDetails.forEach((carryDetail, index) => {
+          setTimeout(() => {
+            // 隐藏上一位的进位
+            if (index > 0) {
+              const prevCarryElements = verticalEl.querySelectorAll(
+                `.carry[data-position="${index - 1}"]`
+              );
+              prevCarryElements.forEach((carry) => {
+                carry.classList.remove("visible");
+              });
+            }
+
+            // 显示当前位的进位
+            const currentCarryElements = verticalEl.querySelectorAll(
+              `.carry[data-position="${index}"]`
+            );
+            currentCarryElements.forEach((carry) => {
+              carry.classList.add("visible");
+            });
+
+            // 显示当前部分积
+            if (index < partProducts.length) {
+              const partialProduct =
+                verticalEl.querySelectorAll(".partial-product")[index];
+              if (partialProduct) {
+                partialProduct.classList.add("visible");
+              }
+            }
+
+            // 如果是最后一个部分积，显示第二条横线和结果
+            if (index === carryDetails.length - 1) {
+              setTimeout(() => {
+                // 新增延迟：让最后一次进位显示5秒后再隐藏
+                setTimeout(() => {
+                  const lastCarryElements = verticalEl.querySelectorAll(
+                    `.carry[data-position="${index}"]`
+                  );
+                  lastCarryElements.forEach((carry) => {
+                    carry.classList.remove("visible");
+                  });
+                }, 5000);
+
+                // 显示第二条横线
+                if (lines.length > 1) {
+                  lines[1].style.width =
+                    calculateMultiplicationLineWidth() + "px";
+                }
+
+                // 延迟显示最终结果
+                setTimeout(() => {
+                  verticalEl
+                    .querySelector(".multiplication-result")
+                    .classList.add("visible");
+                }, 1000);
+              }, 1000);
+            }
+          }, 3000 * (index + 1));
+        });
+      }
+
+      // 计算逻辑
+      document.getElementById("calcBtn").addEventListener("click", calc);
+      function calc() {
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+        const operator = document.getElementById("operator").value;
+        const errorEl = document.getElementById("error");
+        const resultEl = document.getElementById("result");
+        const verticalEl = document.getElementById("vertical");
+        const finalEl = document.getElementById("finalResult");
+        const processTitle = document.getElementById("processTitle");
+
+        // 清空状态
+        errorEl.classList.add("hidden");
+        resultEl.classList.add("hidden");
+        const oldExplanation = document.getElementById("explanation");
+        if (oldExplanation) oldExplanation.remove();
+
+        // 验证
+        if (isNaN(num1) || isNaN(num2)) {
+          errorEl.textContent = "请输入有效数字";
+          errorEl.classList.remove("hidden");
+          return;
+        }
+        if (operator === "divide" && num2 === 0) {
+          errorEl.textContent = "除数不能为0";
+          errorEl.classList.remove("hidden");
+          return;
+        }
+
+        // 计算
+        let steps, finalText, processHtml;
+        if (operator === "multiply") {
+          processTitle.textContent = "乘法计算过程：";
+          steps = generateMultiplicationSteps(num1, num2);
+          processHtml = renderMultiplicationVertical(num1, num2, steps);
+          finalText = `${num1} × ${num2} = ${formatNumber(steps.product)}`;
+        } else {
+          processTitle.textContent = "除法计算过程：";
+          steps = generateDivisionSteps(num1, num2);
+          processHtml = renderDivisionVertical(num1, num2, steps);
+          finalText = `${num1} ÷ ${num2} = ${formatNumber(steps.quotient)}`;
+        }
+
+        // 渲染结果
+        verticalEl.innerHTML = processHtml;
+        finalEl.textContent = finalText;
+        const resultContainer = finalEl.closest(".p-4.bg-gray-50.rounded-lg");
+        let explanationHtml = `<div id="explanation" class="mt-4 text-sm md:text-base text-gray-700"><h3 class="font-semibold mb-2">推理过程：</h3><ul class="list-disc pl-5 space-y-2">`;
+        steps.steps.forEach((step) => {
+          step.explanation.forEach(
+            (desc) => (explanationHtml += `<li>${desc}</li>`)
+          );
+        });
+        explanationHtml += `</ul></div>`;
+        resultContainer.insertAdjacentHTML("afterend", explanationHtml);
+        resultEl.classList.remove("hidden");
+
+        // 启动乘法动画
+        if (operator === "multiply") {
+          setTimeout(() => {
+            calculateMultiplicationLineWidth();
+            animateMultiplicationSteps(steps);
+          }, 500);
+        }
+      }
+
+      // 乘法步骤生成
+      function generateMultiplicationSteps(num1, num2) {
+        const getIntegerAndDigits = (num) => {
+          const str = num.toString();
+          const dotIndex = str.indexOf(".");
+          if (dotIndex === -1) {
+            return { integer: parseInt(str, 10), digits: 0 };
+          }
+          const digits = str.length - dotIndex - 1;
+          const integerStr = str.replace(".", "");
+          return { integer: parseInt(integerStr, 10), digits };
+        };
+
+        const { integer: int1, digits: d1 } = getIntegerAndDigits(num1);
+        const { integer: int2, digits: d2 } = getIntegerAndDigits(num2);
+        const totalDigits = d1 + d2;
+
+        const steps = [];
+        const num1Str = int1.toString();
+        const num2Str = int2.toString();
+        const partProducts = [];
+        const carryDetails = [];
+        let hasCarry = false;
+
+        steps.push({
+          explanation: [
+            `计算 ${num1} × ${num2}，先转换为整数计算：${int1} × ${int2}`,
+            `被乘数：${num1Str}（原数${num1}），乘数：${num2Str}（原数${num2}）`,
+          ],
+        });
+
+        for (let i = num2Str.length - 1; i >= 0; i--) {
+          const digit2 = parseInt(num2Str[i], 10);
+          let carry = 0;
+          let partProduct = "";
+          const stepExplanations = [
+            `用乘数的第${
+              num2Str.length - i
+            }位（数字${digit2}）乘以被乘数的每一位`,
+          ];
+          const digitCarries = [];
+
+          for (let j = num1Str.length - 1; j >= 0; j--) {
+            const digit1 = parseInt(num1Str[j], 10);
+            const product = digit1 * digit2 + carry;
+            const currentDigit = product % 10;
+            carry = Math.floor(product / 10);
+            partProduct = currentDigit + partProduct;
+            digitCarries.push({ digit1, digit2, position: j, carry });
+            stepExplanations.push(
+              `${digit1} × ${digit2} + 进位${
+                carry === 0 ? "0" : carry
+              } = ${product}，写${currentDigit}，进位${carry}`
+            );
+
+            if (carry > 0) hasCarry = true;
+          }
+
+          if (carry > 0) {
+            partProduct = carry + partProduct;
+            stepExplanations.push(`最后进位${carry}，直接写下`);
+            hasCarry = true;
+          }
+
+          const partProductNum = parseInt(partProduct, 10);
+          partProducts.push(partProductNum);
+          carryDetails.push({
+            digitPosition: num2Str.length - 1 - i,
+            digitCarries,
+            partProduct: partProductNum,
+          });
+
+          steps.push({
+            digit2,
+            partProduct: partProductNum,
+            digitPosition: num2Str.length - 1 - i,
+            digitCarries,
+            explanation: stepExplanations,
+          });
+        }
+
+        let integerProduct = partProducts.reduce(
+          (sum, p, i) => sum + p * 10 ** i,
+          0
+        );
+        const product = integerProduct / 10 ** totalDigits;
+
+        steps.push({
+          explanation: [
+            `整数乘积：${integerProduct}，总小数位数：${totalDigits}`,
+            `还原结果：${integerProduct} ÷ 10^${totalDigits} = ${product}`,
+            `最终结果：${num1} × ${num2} = ${product}`,
+          ],
+        });
+
+        return { steps, product, partProducts, carryDetails, hasCarry };
+      }
+
+      // 乘法竖式渲染
+      function renderMultiplicationVertical(num1, num2, data) {
+        const { carryDetails, product, partProducts } = data;
+        const num1Str = num1.toString();
+        const num2Str = num2.toString();
+        const int1Str = num1Str.replace(".", "");
+        const int2Str = num2Str.replace(".", "");
+
+        // 计算最大位数作为对齐基准
+        const maxDigitCount = Math.max(int1Str.length, int2Str.length);
+        const multiplicandOffset = (maxDigitCount - int1Str.length) * 20 + 20;
+        const multiplierOffset = (maxDigitCount - int2Str.length) * 20;
+
+        // 生成被乘数HTML（带进位标记）
+        let num1Html = "";
+        for (let i = 0; i < num1Str.length; i++) {
+          const char = num1Str[i];
+          if (char === ".") {
+            num1Html += `<div class="multiplicand-digit">${char}</div>`;
+            continue;
+          }
+
+          // 为每一位数字添加所有可能的进位标记
+          let carryHtml = "";
+          carryDetails.forEach((carryDetail, index) => {
+            const digitIndex = int1Str.indexOf(
+              char,
+              i - (num1Str.substring(0, i).includes(".") ? 1 : 0)
+            );
+            const carry =
+              carryDetail.digitCarries.find((c) => c.position === digitIndex)
+                ?.carry || 0;
+            if (carry > 0) {
+              carryHtml += `<span class="carry" data-position="${index}" style="--position: ${index}">${carry}</span>`;
+            }
+          });
+
+          num1Html += `<div class="multiplicand-digit">${char}${carryHtml}</div>`;
+        }
+
+        // 生成乘数HTML
+        let num2Html = "";
+        for (let i = 0; i < num2Str.length; i++) {
+          const char = num2Str[i];
+          if (char === ".") {
+            num2Html += `<div class="multiplier-digit">${char}</div>`;
+            continue;
+          }
+          num2Html += `<div class="multiplier-digit">${char}</div>`;
+        }
+
+        // 部分积渲染
+        let partialProductsHtml = "";
+        if (carryDetails.length > 1) {
+          carryDetails.forEach((item, index) => {
+            const productStr = item.partProduct.toString();
+            const paddedProduct = productStr.padStart(maxDigitCount, " ");
+            partialProductsHtml += `<div class="partial-product" style="--digit-offset: ${index}">${paddedProduct}</div>`;
+          });
+        }
+
+        // 计算结果偏移量
+        const productStr = product.toString().replace(/\./, "");
+        const resultOffset = (maxDigitCount - productStr.length) * 20;
+
+        // 计算单个数字宽度并设置CSS变量
+        setTimeout(() => {
+          const singleDigitEl = document.querySelector(".multiplicand-digit");
+          if (singleDigitEl) {
+            const singleDigitWidth = singleDigitEl.offsetWidth;
+            document.documentElement.style.setProperty(
+              "--single-digit-width",
+              `${singleDigitWidth}px`
+            );
+          }
+        }, 0);
+
+        return `
+    <div class="multiplication-vertical">
+      <div style="margin-left: ${multiplicandOffset}px">${num1Html}</div>
+      <div style="margin-left: ${multiplierOffset}px">×${num2Html}</div>
+      <div class="multiplication-line"></div>
+      ${partialProductsHtml}
+      ${
+        carryDetails.length > 1 ? '<div class="multiplication-line"></div>' : ""
+      }
+      <div class="multiplication-result" style="--result-offset: ${resultOffset}">${product.toString()}</div>
+    </div>
+  `;
+      }
+
+      // 除法步骤生成
+      function generateDivisionSteps(dividend, divisor) {
+        // 新增：处理除数为小数的情况，统一化为整数计算
+        const divisorStr = divisor.toString();
+        const [divisorIntPart, divisorDecPart = ""] = divisorStr.split(".");
+        const divisorDecimalCount = divisorDecPart.length; // 除数的小数位数
+        const scale = Math.pow(10, divisorDecimalCount); // 放大倍数
+
+        // 被除数和除数同时放大相同倍数，确保除数变为整数
+        const scaledDividend = dividend * scale;
+        const scaledDivisor = divisor * scale;
+
+        // 后续逻辑不变，但使用放大后的整数（scaledDividend、scaledDivisor）计算
+        const steps = [];
+        const quotientDigits = [];
+        let remainder = 0;
+        let hasDecimal = false;
+        const maxDecimal = 6;
+        let decimalCount = 0;
+
+        const dividendStr = scaledDividend.toString();
+        const [dividendIntPart, dividendDecPart = ""] = dividendStr.split(".");
+        const intDigits = dividendIntPart.split("").map(Number);
+        const decDigits = dividendDecPart.split("").map(Number);
+        const totalDigits = intDigits.length + decDigits.length;
+        let digitIndex = 0;
+
+        let currentNum = 0;
+        while (digitIndex < intDigits.length && currentNum < scaledDivisor) {
+          currentNum = currentNum * 10 + intDigits[digitIndex];
+          digitIndex++;
+        }
+
+        let firstDigit;
+        if (currentNum >= scaledDivisor) {
+          firstDigit = Math.floor(currentNum / scaledDivisor);
+          quotientDigits.push(firstDigit);
+        } else {
+          firstDigit = 0;
+          quotientDigits.push(0);
+          if (digitIndex >= intDigits.length) {
+            quotientDigits.push(".");
+            hasDecimal = true;
+          }
+        }
+        const firstProduct = firstDigit * scaledDivisor;
+        remainder = currentNum - firstProduct;
+
+        // 新增：在第一步说明放大逻辑，帮助小学生理解
+        steps.push({
+          minuend: currentNum,
+          product: firstProduct,
+          remainder: remainder,
+          carryDigit: null,
+          isOriginalDigit: false,
+          explanation: [
+            `计算 ${dividend} ÷ ${divisor}，先统一小数位数：`,
+            `除数有${divisorDecimalCount}位小数，被除数和除数同时×${scale}，转化为 ${scaledDividend} ÷ ${scaledDivisor}`,
+            `取被除数整数部分${currentNum}（前${digitIndex}位）÷ ${scaledDivisor}，商为${firstDigit}`,
+            `${firstDigit}×${scaledDivisor}=${firstProduct}，${currentNum}-${firstProduct}=${remainder}（余数）`,
+          ],
+        });
+
+        // 后续计算逻辑不变（仅将 divisor 替换为 scaledDivisor）
+        while (
+          (digitIndex < totalDigits || remainder !== 0) &&
+          decimalCount <= maxDecimal
+        ) {
+          if (digitIndex >= intDigits.length && !hasDecimal) {
+            quotientDigits.push(".");
+            hasDecimal = true;
+          }
+
+          let currentDigit = 0;
+          let isOriginalDigit = false;
+          if (digitIndex < intDigits.length) {
+            currentDigit = intDigits[digitIndex];
+            isOriginalDigit = true;
+            digitIndex++;
+          } else if (digitIndex - intDigits.length < decDigits.length) {
+            currentDigit = decDigits[digitIndex - intDigits.length];
+            isOriginalDigit = true;
+            digitIndex++;
+          } else {
+            currentDigit = 0;
+            isOriginalDigit = false;
+            decimalCount++;
+          }
+
+          const newMinuend = remainder * 10 + currentDigit;
+          const digit =
+            newMinuend >= scaledDivisor
+              ? Math.floor(newMinuend / scaledDivisor)
+              : 0;
+          quotientDigits.push(digit);
+
+          const product = digit * scaledDivisor;
+          const newRemainder = newMinuend - product;
+
+          const explanation = [];
+          if (isOriginalDigit) {
+            explanation.push(
+              remainder === 0
+                ? `余数为0，落下被除数的下一位${currentDigit}，得到${newMinuend}`
+                : `${remainder}后面落下被除数的下一位${currentDigit}，得到${newMinuend}`
+            );
+          } else {
+            explanation.push(`${remainder}不够除，补0得到${newMinuend}`);
+          }
+          if (newMinuend < scaledDivisor) {
+            explanation.push(`${newMinuend}<${scaledDivisor}，商补0`);
+          } else {
+            explanation.push(
+              `${newMinuend}÷${scaledDivisor}=${digit}（${scaledDivisor}×${digit}=${product}）`
+            );
+          }
+          explanation.push(`${digit}×${scaledDivisor}=${product}`);
+          explanation.push(`${newMinuend}-${product}=${newRemainder}（余数）`);
+
+          steps.push({
+            minuend: newMinuend,
+            product: product,
+            remainder: newRemainder,
+            carryDigit: currentDigit,
+            isOriginalDigit: isOriginalDigit,
+            explanation: explanation,
+          });
+
+          remainder = newRemainder;
+          if (remainder === 0 && digitIndex >= totalDigits) break;
+        }
+
+        let quotientStr = quotientDigits.join("");
+        quotientStr = quotientStr.replace(/(\.\d*?)0+$/, "$1");
+        quotientStr = quotientStr.replace(/\.$/, "");
+        const quotient = parseFloat(quotientStr);
+
+        if (remainder === 0) {
+          steps[steps.length - 1].explanation.push(
+            `余数为0，计算结束，商为${quotient}`
+          );
+        } else {
+          steps[steps.length - 1].explanation.push(
+            `保留${maxDecimal}位小数，商为${quotient}`
+          );
+        }
+
+        return { steps: steps, quotient: quotient };
+      }
+      // 除法竖式渲染
+      function renderDivisionVertical(dividend, divisor, data) {
+        const { steps, quotient } = data;
+        const quotientStr = quotient.toString();
+        const fullDividend = dividend.toString();
+        const fullDivisor = divisor.toString();
+
+        let html = `<div class="division-container inline-block">`;
+        html += `<div class="mb-1 ml-[calc(50%+12px)]">${quotientStr}</div>`;
+        html += `<div class="division-bar relative">`;
+        html += `<div class="divisor">${fullDivisor}</div>`;
+
+        html += `<div class="group-1">`;
+        html += `<div class="my-1 item-1 full-dividend">${fullDividend}</div>`;
+        html += `<div class="my-1 item-2">${steps[0].product}</div>`;
+        html += `<div class="border-b-2 border-black my-1"></div>`;
+        html += `</div>`;
+
+        for (let i = 0; i < steps.length; i++) {
+          const step = steps[i];
+          const groupNum = i + 2;
+          const remainderInt = Math.floor(step.remainder);
+          let remainderStr = remainderInt.toString();
+
+          if (i < steps.length - 1) {
+            const nextStep = steps[i + 1];
+            if (remainderInt === 0) {
+              remainderStr = `<span class="carry-digit">${nextStep.carryDigit}</span>`;
+            } else if (nextStep.isOriginalDigit) {
+              remainderStr = `${remainderInt}<span class="carry-digit">${nextStep.carryDigit}</span>`;
+            } else if (nextStep.carryDigit === 0) {
+              remainderStr = `${remainderInt}<span class="carry-digit">0</span>`;
+            }
+          }
+
+          html += `<div class="group-${groupNum}">`;
+          html += `<div class="my-1 item-1">${remainderStr}</div>`;
+          if (i < steps.length - 1) {
+            html += `<div class="my-1 item-2">${steps[i + 1].product}</div>`;
+            html += `<div class="border-b-2 border-black my-1"></div>`;
+          } else if (step.remainder !== 0) {
+            html += `<div class="border-b-2 border-black my-1"></div>`;
+          }
+          html += `</div>`;
+        }
+
+        html += `</div></div>`;
+        return html;
+      }
+    </script>
   </body>
 </html>
+
 
