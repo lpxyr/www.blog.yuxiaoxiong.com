@@ -1,0 +1,1145 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>仙子配色网</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0c0e12;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        color: #f0f0ee;
+        padding: 24px;
+        min-height: 100vh;
+        padding-bottom: 80px;
+        /* 给播放器留出空间 */
+      }
+
+      .custom-player {
+        position: fixed;
+        bottom: 24px;
+        left: 20px;
+        background: linear-gradient(
+          to right,
+          color-mix(in srgb, var(--active-color) 25%, transparent)
+            var(--progress, 0%),
+          rgba(30, 34, 41, 0.96) 0%
+        );
+        backdrop-filter: blur(12px);
+        border-radius: 60px;
+        padding: 8px 16px 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        z-index: 10000;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .custom-player.collapsed {
+        max-width: 220px;
+        height: auto;
+        align-items: center;
+      }
+
+      /* 🔥 这里加宽了：从 520px → 620px */
+      .custom-player.expanded {
+        border-radius: 60px;
+        max-width: 620px;
+        background: linear-gradient(
+          to right,
+          color-mix(in srgb, var(--active-color) 15%, transparent)
+            var(--progress, 0%),
+          rgba(22, 26, 32, 0.98) 0%
+        );
+        padding: 12px 16px;
+        height: 72px;
+        align-items: center;
+      }
+
+      .custom-cover {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-color: #2a2e35;
+        flex-shrink: 0;
+      }
+
+      .cover-spin {
+        animation: spin 8s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .custom-info-area {
+        flex: 1;
+        min-width: 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .custom-info {
+        overflow: hidden;
+      }
+
+      .custom-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #f0f3fa;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .custom-author {
+        font-size: 11px;
+        color: #9aa3b5;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: -2px;
+      }
+
+      .custom-controls {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        transition: all 0.25s ease;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        flex-shrink: 0;
+        z-index: 10;
+      }
+
+      .custom-player.expanded .custom-controls {
+        opacity: 1;
+        width: auto;
+        overflow: visible;
+      }
+
+      /* 歌词宽度也同步加宽，更美观 */
+      .lyrics-vertical-box {
+        width: 180px;
+        height: 54px;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+        flex-shrink: 0;
+        z-index: 9;
+      }
+
+      .custom-player.expanded .lyrics-vertical-box {
+        opacity: 1;
+      }
+
+      .lyrics-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        height: 100%;
+        justify-content: center;
+      }
+
+      .lyrics-line {
+        font-size: 11px;
+        color: #6b7280;
+        line-height: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.2s ease;
+        text-align: center;
+      }
+
+      .lyrics-line.active {
+        color: var(--active-color) !important;
+        font-weight: 500;
+      }
+
+      .ctrl-btn {
+        background: transparent;
+        border: none;
+        color: #d9e0eb;
+        font-size: 12px;
+        cursor: pointer;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+      }
+
+      .ctrl-btn:hover {
+        background: color-mix(in srgb, var(--active-color) 20%, transparent);
+        color: var(--active-color);
+      }
+
+      .play-pause {
+        background: #c8fb6c;
+        color: #1e2229;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .play-pause:hover {
+        background: #dcff8c;
+        transform: scale(1.04);
+      }
+
+      .extra-icons {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        transition: all 0.25s ease;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: 2px;
+        z-index: 10;
+      }
+
+      .custom-player.expanded .extra-icons {
+        opacity: 1;
+        width: auto;
+        overflow: visible;
+      }
+
+      .volume-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .volume-slider {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.2s;
+        height: 3px;
+        background: #3d4452;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .volume-wrap:hover .volume-slider {
+        width: 60px;
+        margin-left: 6px;
+      }
+
+      .volume-fill {
+        width: 70%;
+        height: 100%;
+        background: var(--active-color) !important;
+        border-radius: 4px;
+      }
+
+      .custom-progress-area {
+        display: none !important;
+      }
+
+      #playlistPanel {
+        background: #1a1e26e6;
+        backdrop-filter: blur(20px);
+        border: 1px solid #2f3540;
+        border-radius: 20px;
+      }
+
+      #playlistPanel::-webkit-scrollbar {
+        width: 3px;
+      }
+
+      #playlistPanel::-webkit-scrollbar-thumb {
+        background: #5f6a7a;
+        border-radius: 10px;
+      }
+      /* 播放列表外层容器 */
+      #playlistPanel {
+        background: #1a1e26e6;
+        backdrop-filter: blur(20px);
+        border: 1px solid #2f3540;
+        border-radius: 20px;
+      }
+
+      /* 歌曲列表容器 */
+      #playlistItems {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* 每一行歌曲 */
+      .playlist-item {
+        padding: 10px 14px;
+        cursor: pointer;
+        font-size: 12px;
+        border-bottom: 1px solid #2f353f;
+        color: rgb(207, 214, 230);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* 歌曲图标 */
+      .playlist-item .fa-music {
+        flex-shrink: 0;
+      }
+
+      /* 歌曲名称 */
+      .playlist-item .song-name {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* 歌手名称 */
+      .playlist-item .song-artist {
+        color: #7d879b;
+        font-size: 9px;
+        flex-shrink: 0;
+      }
+
+      /* 正在播放的歌曲 */
+      .playlist-item.active {
+        color: var(--active-color);
+      }
+
+      /* 鼠标悬浮效果 */
+      .playlist-item:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img2/style.css"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="logo">
+        <span class="logo-title">仙子配色</span>
+        <span class="logo-badge">Beta</span>
+      </div>
+      <div class="toolbar-right">
+        <div class="search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="搜索颜色…" />
+        </div>
+        <div class="select-wrap">
+          <select id="sortSelect">
+            <option value="default">默认顺序</option>
+            <option value="hue">按色相</option>
+            <option value="lightness">按明度</option>
+            <option value="saturation">按饱和度</option>
+          </select>
+        </div>
+
+        <button class="btn btn-image btn-sm" id="imagePickBtn">
+          <i class="fas fa-image"></i> 图片取色
+        </button>
+        <input
+          type="file"
+          id="imagePickFile"
+          accept="image/*"
+          style="display: none"
+        />
+        <button class="btn btn-ghost btn-sm" id="multiSelectBtn">
+          <i class="fas fa-check-square"></i> 多选
+        </button>
+        <button class="btn btn-ghost btn-sm" id="exportBtn">
+          <i class="fas fa-arrow-up-from-bracket"></i> 导出
+        </button>
+        <label class="btn btn-ghost btn-sm" style="cursor: pointer">
+          <i class="fas fa-arrow-down-to-bracket"></i> 导入
+          <input
+            type="file"
+            id="importFile"
+            accept=".json"
+            style="display: none"
+          />
+        </label>
+        <button class="btn btn-accent" id="addColorBtn">
+          <i class="fas fa-plus"></i> 新建色块
+        </button>
+        <div class="help-btn" id="helpBtn">
+          <i class="fas fa-info"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+      <div class="sidebar">
+        <div class="panel">
+          <div class="panel-title">
+            分组
+            <button class="btn btn-ghost btn-sm" id="addGroupBtn">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div id="groupList" class="group-list"></div>
+          <div class="add-group-input" id="addGroupInputWrap">
+            <input type="text" id="newGroupName" placeholder="分组名称" />
+            <button class="btn btn-accent btn-sm" id="confirmAddGroup">
+              <i class="fas fa-check"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-area">
+        <div class="grid-panel">
+          <div id="fileProtocolWarning" class="file-protocol-warning">
+            <i class="fas fa-triangle-exclamation"></i>
+            当前以 file://
+            协议打开，颜色自动命名功能受限。建议通过本地服务器（如 VS Code Live
+            Server）打开以获得完整体验。
+          </div>
+          <div id="batchBar" class="batch-bar">
+            <span class="batch-bar-text" id="batchBarText">已选 0 个色块</span>
+            <button class="btn btn-ghost btn-sm" id="batchSelectAllBtn">
+              <i class="fas fa-check-double"></i> 全选
+            </button>
+            <button class="btn btn-danger btn-sm" id="batchDeleteBtn">
+              <i class="fas fa-trash"></i> 批量删除
+            </button>
+            <button class="btn btn-ghost btn-sm" id="batchCancelBtn">
+              <i class="fas fa-times"></i> 取消
+            </button>
+          </div>
+          <div id="colorGrid" class="color-grid"></div>
+        </div>
+        <div class="gradient-panel" id="gradientPanel">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="dot"></span>
+              互补色渐变 / 色彩工具集
+            </div>
+            <div class="gradient-hints">
+              <span class="hint-tag"
+                ><i class="fas fa-arrow-pointer"></i> 悬停拾色</span
+              >
+              <span class="hint-tag"
+                ><i class="fas fa-hand-pointer"></i> 点击复制</span
+              >
+            </div>
+          </div>
+          <div id="gradientContent">
+            <div class="placeholder">
+              <i class="fas fa-wand-magic-sparkles"></i>
+              <p>选中任意色块<br />自动生成互补渐变带</p>
+            </div>
+          </div>
+        </div>
+        <div class="scheme-panel" id="schemePanel">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="dot" style="background: var(--active-color)"></span>
+              配色推荐
+            </div>
+          </div>
+          <div id="schemeContent">
+            <div class="placeholder">
+              <i class="fas fa-palette"></i>
+              <p>选中色块后<br />查看多种配色方案</p>
+            </div>
+            <div id="fullPalettePreview" class="full-palette-preview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastMsg" class="toast"></div>
+
+    <div id="colorModal" class="modal">
+      <div class="modal-box">
+        <div class="modal-title" id="modalTitle">
+          <i class="fas fa-palette"></i> 添加色块
+        </div>
+        <input
+          type="text"
+          id="colorName"
+          placeholder="颜色名称（留空自动命名）"
+        />
+        <div class="color-picker-row">
+          <input type="color" id="colorPicker" value="#3b82f6" />
+          <input
+            type="text"
+            id="colorHex"
+            placeholder="#RRGGBB"
+            value="#3b82f6"
+            style="flex: 1; margin: 0"
+          />
+        </div>
+        <select id="modalGroupSelect"></select>
+        <div class="modal-actions">
+          <button class="btn btn-accent" id="saveColorBtn">
+            <i class="fas fa-check"></i> 保存
+          </button>
+          <button class="btn btn-ghost" id="closeModalBtn">
+            <i class="fas fa-times"></i> 取消
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+      <div class="modal-box" style="max-width: 360px">
+        <div class="modal-title" id="confirmTitle">
+          <i class="fas fa-exclamation-triangle"></i> 确认
+        </div>
+        <p id="confirmMessage">确定要执行此操作吗？</p>
+        <div class="modal-actions">
+          <button class="btn btn-danger" id="confirmOkBtn">
+            <i class="fas fa-trash"></i> 确定删除
+          </button>
+          <button class="btn btn-ghost" id="confirmCancelBtn">
+            <i class="fas fa-times"></i> 取消
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="helpModal" class="modal help-modal">
+      <div class="modal-box">
+        <div class="modal-title">
+          <i class="fas fa-universal-access"></i> 无障碍色彩指南
+        </div>
+        <div
+          style="
+            font-size: 13px;
+            color: var(--text-subtle);
+            margin-bottom: 20px;
+          "
+        >
+          WCAG（Web内容无障碍指南）定义了文字与背景的对比度标准，确保色盲/视障用户也能清晰阅读。
+        </div>
+        <div class="wcag-scale">
+          <div class="wcag-row">
+            <div class="wcag-badge aaa">AAA级</div>
+            <div class="wcag-desc">最高标准，适合长时间阅读的文字</div>
+            <div class="wcag-value">≥ 7:1</div>
+          </div>
+          <div class="wcag-row">
+            <div class="wcag-badge aa">AA级</div>
+            <div class="wcag-desc">推荐标准，满足大多数无障碍要求</div>
+            <div class="wcag-value">≥ 4.5:1</div>
+          </div>
+          <div class="wcag-row">
+            <div class="wcag-badge fail">❌ 不通过</div>
+            <div class="wcag-desc">对比度不足，可能难以阅读</div>
+            <div class="wcag-value">&lt; 4.5:1</div>
+          </div>
+        </div>
+        <div class="help-section">
+          <div class="help-section-title">
+            <i class="fas fa-lightbulb"></i> 使用技巧
+          </div>
+          <div class="help-tip">
+            <i class="fas fa-hand-pointer" style="color: var(--accent)"></i>
+            选中色块后，下方会实时显示与白/黑背景的对比度
+          </div>
+          <div class="help-tip">
+            <i class="fas fa-palette" style="color: var(--accent)"></i>
+            渐变拾色器：鼠标移动拾色，点击复制色值
+          </div>
+          <div class="help-tip">
+            <i
+              class="fas fa-arrow-up-from-bracket"
+              style="color: var(--accent)"
+            ></i>
+            导出/导入：可保存配色方案，分享给他人
+          </div>
+          <div class="help-tip">
+            <i class="fas fa-magic" style="color: var(--accent)"></i>
+            配色推荐：基于色彩构成原理，一键生成5种配色方案
+          </div>
+          <div class="help-tip">
+            <i class="fas fa-image" style="color: #7eb8ff"></i>
+            图片取色：上传图片，智能提取主要色块
+          </div>
+        </div>
+        <div class="modal-actions" style="margin-top: 20px">
+          <button class="btn btn-accent" id="closeHelpBtn" style="flex: 1">
+            知道了
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="imagePickModal" class="modal image-modal">
+      <div class="modal-box">
+        <div class="modal-title">
+          <i class="fas fa-image" style="color: #7eb8ff"></i> 图片智能取色
+        </div>
+        <div class="image-preview-wrap" id="imagePreviewWrap">
+          <span class="no-image-text" id="noImageText">
+            <i class="fas fa-cloud-arrow-up"></i> 请选择一张图片
+          </span>
+          <img id="imagePreviewImg" src="" alt="预览" style="display: none" />
+        </div>
+        <div class="extract-controls">
+          <div class="extract-slider-group">
+            <label>提取数量</label>
+            <input
+              type="range"
+              id="extractCountSlider"
+              min="3"
+              max="12"
+              value="6"
+              step="1"
+            />
+            <span class="extract-count-badge" id="extractCountBadge">6</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="reExtractBtn">
+            <i class="fas fa-rotate"></i> 重新提取
+          </button>
+        </div>
+        <div class="extracted-colors-grid" id="extractedColorsGrid">
+          <div
+            style="
+              grid-column: 1/-1;
+              text-align: center;
+              color: var(--text-muted);
+              font-size: 13px;
+              padding: 24px;
+            "
+          >
+            <i class="fas fa-arrow-up"></i> 请先上传图片
+          </div>
+        </div>
+        <div
+          style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap"
+        >
+          <button class="btn btn-ghost btn-sm" id="selectAllExtractedBtn">
+            <i class="fas fa-check-double"></i> 全选
+          </button>
+          <button class="btn btn-ghost btn-sm" id="deselectAllExtractedBtn">
+            <i class="fas fa-circle"></i> 取消全选
+          </button>
+          <span
+            style="
+              font-size: 11px;
+              color: var(--text-muted);
+              margin-left: auto;
+              align-self: center;
+            "
+            id="selectedCountText"
+            >已选 0 色</span
+          >
+        </div>
+        <div class="image-modal-actions">
+          <button class="btn btn-accent" id="addExtractedColorsBtn">
+            <i class="fas fa-plus"></i> 添加选中颜色到色板
+          </button>
+          <button class="btn btn-ghost" id="closeImagePickModalBtn">
+            <i class="fas fa-times"></i> 关闭
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="shadeExportModal" class="modal shade-export-modal">
+      <div class="modal-box">
+        <div class="modal-title"><i class="fas fa-code"></i> 导出色阶代码</div>
+        <div class="shade-export-tabs">
+          <button class="shade-export-tab active" data-fmt="css">
+            CSS 变量
+          </button>
+          <button class="shade-export-tab" data-fmt="tailwind">Tailwind</button>
+          <button class="shade-export-tab" data-fmt="scss">SCSS Map</button>
+        </div>
+        <pre class="shade-export-code" id="shadeExportCode"></pre>
+        <div class="modal-actions">
+          <button class="btn btn-accent" id="copyShadeCodeBtn">
+            <i class="fas fa-copy"></i> 复制代码
+          </button>
+          <button class="btn btn-ghost" id="closeShadeExportBtn">
+            <i class="fas fa-times"></i> 关闭
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="importModeModal" class="modal">
+      <div class="modal-box" style="max-width: 380px">
+        <div class="modal-title">
+          <i class="fas fa-arrow-down-to-bracket"></i> 导入配色方案
+        </div>
+        <p>请选择导入方式：</p>
+        <div class="import-mode-row">
+          <div class="import-mode-btn active" id="importMergeBtn">
+            <i class="fas fa-layer-group"></i><br />合并导入<br /><small
+              style="color: var(--text-muted); font-weight: 400"
+              >保留现有数据</small
+            >
+          </div>
+          <div class="import-mode-btn" id="importReplaceBtn">
+            <i class="fas fa-rotate"></i><br />覆盖导入<br /><small
+              style="color: var(--text-muted); font-weight: 400"
+              >替换全部数据</small
+            >
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-accent" id="importConfirmBtn">
+            <i class="fas fa-check"></i> 确认导入
+          </button>
+          <button class="btn btn-ghost" id="importCancelBtn">
+            <i class="fas fa-times"></i> 取消
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="playlistPanel"
+      style="
+        position: fixed;
+        bottom: 90px;
+        left: 20px;
+        width: 260px;
+        max-height: 300px;
+        overflow-y: auto;
+        display: none;
+        z-index: 10001;
+        padding: 8px 0;
+        box-shadow: 0 10px 28px black;
+      "
+    >
+      <div
+        style="
+          padding: 10px 16px;
+          font-weight: 600;
+          border-bottom: 1px solid #2a2e35;
+          color: #f0f3fa;
+        "
+      >
+        📋 播放列表
+      </div>
+      <div id="playlistItems"></div>
+    </div>
+
+    <div class="custom-player collapsed" id="customPlayer">
+      <div class="custom-cover" id="customCover"></div>
+      <div class="custom-info-area">
+        <div class="custom-info">
+          <span class="custom-title" id="songTitle">加载歌单中...</span><br />
+          <span class="custom-author" id="songArtist"></span>
+        </div>
+      </div>
+
+      <div class="custom-controls">
+        <button class="ctrl-btn" id="prevBtn">
+          <i class="fas fa-backward-step"></i>
+        </button>
+        <button class="ctrl-btn play-pause" id="playPauseBtn">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="ctrl-btn" id="nextBtn">
+          <i class="fas fa-forward-step"></i>
+        </button>
+      </div>
+
+      <div class="lyrics-vertical-box">
+        <div class="lyrics-wrap" id="lyricsWrap">
+          <div class="lyrics-line">🎵 等待播放...</div>
+          <div class="lyrics-line"></div>
+          <div class="lyrics-line"></div>
+        </div>
+      </div>
+
+      <div class="extra-icons">
+        <div class="volume-wrap">
+          <button class="ctrl-btn" id="volumeBtn">
+            <i class="fas fa-volume-up"></i>
+          </button>
+          <div class="volume-slider" id="volumeSlider">
+            <div class="volume-fill" id="volumeFill"></div>
+          </div>
+        </div>
+        <button class="ctrl-btn" id="menuBtn">
+          <i class="fas fa-list-ul"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const PLAYLIST_ID = "4898125089";
+      let audio = new Audio();
+      let currentIndex = 0;
+      let playlist = [];
+      let isPlaying = false;
+      let progressInterval = null;
+      let currentLyrics = [];
+      let activeLyricIdx = -1;
+
+      const coverEl = document.getElementById("customCover");
+      const songTitle = document.getElementById("songTitle");
+      const songArtist = document.getElementById("songArtist");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const volumeBtn = document.getElementById("volumeBtn");
+      const volumeSlider = document.getElementById("volumeSlider");
+      const volumeFill = document.getElementById("volumeFill");
+      const menuBtn = document.getElementById("menuBtn");
+      const playlistPanel = document.getElementById("playlistPanel");
+      const playlistItemsDiv = document.getElementById("playlistItems");
+      const customPlayer = document.getElementById("customPlayer");
+      const lyricsWrap = document.getElementById("lyricsWrap");
+
+      let expandTimer = null;
+
+      function updateVerticalLyric() {
+        if (!currentLyrics.length) {
+          lyricsWrap.innerHTML = `
+          <div class="lyrics-line">🎵 无歌词 (纯音乐)</div>
+          <div class="lyrics-line"></div>
+          <div class="lyrics-line"></div>
+        `;
+          activeLyricIdx = -1;
+          return;
+        }
+        const now = audio.currentTime;
+        let currIdx = -1;
+        for (let i = currentLyrics.length - 1; i >= 0; i--) {
+          if (currentLyrics[i].time <= now) {
+            currIdx = i;
+            break;
+          }
+        }
+        if (currIdx === activeLyricIdx) return;
+        activeLyricIdx = currIdx;
+
+        let prevLine = currIdx > 0 ? currentLyrics[currIdx - 1].text : "";
+        let currLine = currIdx >= 0 ? currentLyrics[currIdx].text : "♪";
+        let nextLine =
+          currIdx < currentLyrics.length - 1
+            ? currentLyrics[currIdx + 1].text
+            : "";
+
+        lyricsWrap.innerHTML = `
+        <div class="lyrics-line">${prevLine || ""}</div>
+        <div class="lyrics-line active">${currLine || "♪ 间奏 ♪"}</div>
+        <div class="lyrics-line">${nextLine || ""}</div>
+      `;
+      }
+
+      function updateTimeDisplay() {
+        const current = audio.currentTime || 0;
+        const duration = audio.duration || 0;
+        let percent = duration ? (current / duration) * 100 : 0;
+        customPlayer.style.setProperty("--progress", `${percent}%`);
+      }
+
+      function parseLrc(lrcText) {
+        if (!lrcText) return [];
+        const lines = lrcText.split(/\r?\n/);
+        const lyricMap = new Map();
+        const timeRegex = /\[(\d{2}):(\d{2})(?:\.(\d{2,3}))?\]/g;
+        lines.forEach((line) => {
+          let times = [];
+          let match;
+          while ((match = timeRegex.exec(line))) {
+            const m = parseInt(match[1]),
+              s = parseInt(match[2]);
+            const ms = match[3]
+              ? match[3].length === 2
+                ? parseInt(match[3]) * 10
+                : parseInt(match[3])
+              : 0;
+            times.push(m * 60 + s + ms / 1000);
+          }
+          const text = line.replace(timeRegex, "").trim();
+          if (times.length && text) times.forEach((t) => lyricMap.set(t, text));
+        });
+        return Array.from(lyricMap.entries())
+          .map(([time, text]) => ({ time, text }))
+          .sort((a, b) => a.time - b.time);
+      }
+
+      async function fetchLyrics(lrcUrl) {
+        if (!lrcUrl) return [];
+        try {
+          const { data } = await axios.get(lrcUrl);
+          const lrc =
+            typeof data === "string"
+              ? data
+              : data.lrc || data.data?.lrc || data.lyric || "";
+          return parseLrc(lrc);
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function loadSong(index) {
+        if (!playlist.length) return;
+        const song = playlist[index];
+        if (!song?.url) return;
+        const wasPlaying = isPlaying;
+        audio.pause();
+        audio.src = song.url;
+        songTitle.innerText = song.name;
+        songArtist.innerText = song.artist || "";
+        coverEl.style.backgroundImage = song.cover
+          ? `url('${song.cover}')`
+          : "none";
+        audio.load();
+        fetchLyrics(song.lrcUrl).then((lyrics) => {
+          currentLyrics = lyrics;
+          updateVerticalLyric();
+        });
+        if (wasPlaying) audio.play().catch(() => {});
+        updateTimeDisplay();
+        renderPlaylist();
+        coverEl.classList.toggle("cover-spin", isPlaying);
+      }
+
+      function play() {
+        audio.play().then(() => {
+          isPlaying = true;
+          playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+          startProgress();
+          coverEl.classList.add("cover-spin");
+        });
+      }
+      function pause() {
+        audio.pause();
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        clearInterval(progressInterval);
+        coverEl.classList.remove("cover-spin");
+      }
+      function togglePlay() {
+        isPlaying ? pause() : play();
+      }
+      function next() {
+        currentIndex = (currentIndex + 1) % playlist.length;
+        loadSong(currentIndex);
+        isPlaying && play();
+      }
+      function prev() {
+        currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+        loadSong(currentIndex);
+        isPlaying && play();
+      }
+
+      function startProgress() {
+        clearInterval(progressInterval);
+        progressInterval = setInterval(() => {
+          if (isPlaying) {
+            updateTimeDisplay();
+            updateVerticalLyric();
+          }
+        }, 200);
+      }
+
+      function setVolume(v) {
+        const vol = Math.min(1, Math.max(0, v));
+        audio.volume = vol;
+        volumeFill.style.width = vol * 100 + "%";
+        volumeBtn.innerHTML =
+          vol === 0
+            ? '<i class="fas fa-volume-off"></i>'
+            : vol < 0.5
+            ? '<i class="fas fa-volume-down"></i>'
+            : '<i class="fas fa-volume-up"></i>';
+      }
+
+      function renderPlaylist() {
+        playlistItemsDiv.innerHTML = "";
+        playlist.forEach((song, idx) => {
+          const item = document.createElement("div");
+
+          // 🔥 只加类，不加内联样式
+          item.classList.add("playlist-item");
+          if (idx === currentIndex) {
+            item.classList.add("active");
+          }
+
+          // 🔥 结构也拆成带类的形式
+          item.innerHTML = `
+      <i class="fas fa-music"></i>
+      <span class="song-name">${song.name}</span>
+      <span class="song-artist">${song.artist?.slice(0, 12) || ""}</span>
+    `;
+
+          item.onclick = () => {
+            currentIndex = idx;
+            loadSong(idx);
+            play();
+            playlistPanel.style.display = "none";
+          };
+
+          playlistItemsDiv.appendChild(item);
+        });
+      }
+
+      async function loadPlaylist() {
+        try {
+          const { data } = await axios.get(
+            `https://api.injahow.cn/meting/?server=netease&type=playlist&id=${PLAYLIST_ID}`
+          );
+          playlist = data
+            .map((i) => ({
+              name: i.name || i.title || "未知歌曲",
+              artist: i.artist || i.author || "未知歌手",
+              url: i.url,
+              cover: i.cover || i.pic,
+              lrcUrl: i.lrc,
+            }))
+            .filter((i) => i.url);
+          if (playlist.length) {
+            loadSong(0);
+            renderPlaylist();
+          }
+        } catch (e) {
+          songTitle.innerText = "歌单加载失败";
+          songArtist.innerText = "检查网络或ID";
+        }
+      }
+
+      function bindEvents() {
+        playPauseBtn.onclick = togglePlay;
+        prevBtn.onclick = prev;
+        nextBtn.onclick = next;
+
+        volumeBtn.onclick = () => setVolume(audio.volume > 0 ? 0 : 0.7);
+        volumeSlider.onclick = (e) => {
+          const rect = volumeSlider.getBoundingClientRect();
+          setVolume((e.clientX - rect.left) / rect.width);
+        };
+
+        menuBtn.onclick = (e) => {
+          e.stopPropagation();
+          playlistPanel.style.display =
+            playlistPanel.style.display === "block" ? "none" : "block";
+          customPlayer.classList.remove("collapsed");
+          customPlayer.classList.add("expanded");
+          clearTimeout(expandTimer);
+        };
+
+        document.onclick = (e) => {
+          if (
+            !menuBtn.contains(e.target) &&
+            !playlistPanel.contains(e.target)
+          ) {
+            playlistPanel.style.display = "none";
+          }
+        };
+
+        audio.onended = next;
+        audio.ontimeupdate = updateTimeDisplay;
+        setVolume(0.7);
+      }
+
+      function bindExpandCollapse() {
+        customPlayer.onmouseenter = () => {
+          customPlayer.classList.remove("collapsed");
+          customPlayer.classList.add("expanded");
+          clearTimeout(expandTimer);
+        };
+        customPlayer.onmouseleave = () => {
+          expandTimer = setTimeout(() => {
+            customPlayer.classList.remove("expanded");
+            customPlayer.classList.add("collapsed");
+            playlistPanel.style.display = "none";
+          }, 2800);
+        };
+      }
+
+      loadPlaylist();
+      bindEvents();
+      bindExpandCollapse();
+      // 自动同步：选中色卡 → 所有按钮变色 + 智能黑白文字
+      const addColorBtn = document.getElementById("addColorBtn");
+      const saveColorBtn = document.getElementById("saveColorBtn");
+      const imagePickBtn = document.getElementById("imagePickBtn");
+      const closeHelpBtn = document.getElementById("closeHelpBtn");
+
+      document.addEventListener("click", function (e) {
+        const card = e.target.closest(".color-card");
+        if (!card) return;
+
+        const hexEl = card.querySelector(".color-hex");
+        if (!hexEl) return;
+
+        const color = hexEl.textContent.trim();
+        if (!color.startsWith("#")) return;
+
+        // 1. 设置背景颜色
+        document.documentElement.style.setProperty("--active-color", color);
+
+        // 2. 计算亮度 → 自动决定 白色 / 黑色
+        const brightness = getBrightness(color);
+        const textColor = brightness >= 50 ? "#000" : "#fff";
+        document.documentElement.style.setProperty("--text-color", textColor);
+
+        // 3. 给所有按钮加样式
+        addColorBtn.classList.add("dynamic-btn");
+        saveColorBtn.classList.add("dynamic-btn");
+        imagePickBtn.classList.add("dynamic-btn");
+        closeHelpBtn.classList.add("dynamic-btn");
+        playPauseBtn.classList.add("dynamic-btn");
+
+        // 4. 配色面板添加按钮
+        document.querySelectorAll(".scheme-add-btn").forEach((btn) => {
+          btn.classList.add("dynamic-btn");
+        });
+      });
+
+      // 🔥 计算颜色亮度（0-100）
+      function getBrightness(hex) {
+        hex = hex.replace("#", "");
+        const r = parseInt(hex.substr(0, 2), 16);
+        const g = parseInt(hex.substr(2, 2), 16);
+        const b = parseInt(hex.substr(4, 2), 16);
+        return (r * 299 + g * 587 + b * 114) / 1000 / 2.55;
+      }
+    </script>
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/img2/main.js"
+    ></script>
+  </body>
+</html>
+
+
