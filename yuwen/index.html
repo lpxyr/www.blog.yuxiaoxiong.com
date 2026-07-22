@@ -9,9 +9,10 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
     <title>汉字星球 🌟</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/hanzi-learn.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/hanzi-learn.css?v=20260706-1"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
   </head>
 
@@ -40,7 +41,7 @@
     <div class="page-wrap">
       <div class="hero">
         <div class="mascot">🐼</div>
-        <h1>和小熊猫一起认汉字！</h1>
+        <h1>和郑老师一起认汉字！</h1>
         <p>
           今天学了 <strong id="hero-count">0</strong> 个字，再学
           <strong id="hero-left">10</strong> 个就满分啦 🎉
@@ -69,90 +70,154 @@
 
       <div class="section" id="modules">
         <div class="section-title">✨ 选一个开始吧</div>
-        <div class="img-grid">
-          <div class="img-item" onclick="openScene()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg1.png"
-              class="grid-full-img"
-              alt="场景认字"
-            />
+        <nav class="module-stage-nav" aria-label="学习阶段快捷导航">
+          <a href="#stage-preschool">🧸 幼儿启蒙</a>
+          <a href="#stage-basic">🌱 小学基础</a>
+          <a href="#stage-advanced">🚀 小学进阶</a>
+          <a href="#stage-tools">📚 学习工具</a>
+        </nav>
+
+        <div class="module-stage stage-preschool" id="stage-preschool">
+          <div class="module-stage-title">
+            <span>🧸 幼儿启蒙</span><small>3～6岁</small>
           </div>
-          <div class="img-item" onclick="openQuiz()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg2.png"
-              class="grid-full-img"
-              alt="趣味闯关"
-            />
+          <div class="img-grid">
+            <div class="img-item" onclick="openScene()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg1.png"
+                class="grid-full-img"
+                alt="场景认字"
+              />
+            </div>
+            <!-- <div class="img-item" onclick="openImgRead()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg10.png"
+                class="grid-full-img"
+                alt="图片识字"
+              />
+            </div> -->
+            <div class="img-item" onclick="openMatch()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg11.png"
+                class="grid-full-img"
+                alt="积木识字"
+              />
+            </div>
+            <div class="img-item" onclick="openPhonics()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg6.png"
+                class="grid-full-img"
+                alt="拼音练习"
+              />
+            </div>
+            <div class="img-item" onclick="openGuoxue()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg14.png"
+                class="grid-full-img"
+                alt="国学"
+              />
+            </div>
           </div>
-          <div class="img-item" onclick="openDict()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg3.png"
-              class="grid-full-img"
-              alt="AI 字典"
-            />
+        </div>
+
+        <div class="module-stage stage-basic" id="stage-basic">
+          <div class="module-stage-title">
+            <span>🌱 小学基础</span><small>一至三年级</small>
           </div>
-          <div class="img-item" onclick="openWrite()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg4.png"
-              class="grid-full-img"
-              alt="练习写字"
-            />
+          <div class="img-grid">
+            <div class="img-item" onclick="openQuiz()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg2.png"
+                class="grid-full-img"
+                alt="趣味闯关"
+              />
+            </div>
+            <div class="img-item" onclick="openWrite()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg4.png"
+                class="grid-full-img"
+                alt="练习写字"
+              />
+            </div>
+            <div class="img-item" onclick="openStroke()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg12.png"
+                class="grid-full-img"
+                alt="笔顺学习"
+              />
+            </div>
+            <div class="img-item" onclick="openRadicals()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg8.png"
+                class="grid-full-img"
+                alt="偏旁部首"
+              />
+            </div>
+            <!-- <div class="img-item" onclick="openDict()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg3.png"
+                class="grid-full-img"
+                alt="AI 字典"
+              />
+            </div> -->
           </div>
-          <div class="img-item" onclick="openStory()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg5.png"
-              class="grid-full-img"
-              alt="成语故事"
-            />
+        </div>
+
+        <div class="module-stage stage-advanced" id="stage-advanced">
+          <div class="module-stage-title">
+            <span>🚀 小学进阶</span><small>三至六年级</small>
           </div>
-          <div class="img-item" onclick="openPhonics()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg6.png"
-              class="grid-full-img"
-              alt="拼音练习"
-            />
+          <div class="img-grid">
+            <div class="img-item" onclick="openSentence()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg9.png"
+                class="grid-full-img"
+                alt="造句练习"
+              />
+            </div>
+            <div class="img-item" onclick="openStory()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg5.png"
+                class="grid-full-img"
+                alt="成语故事"
+              />
+            </div>
+            <div class="img-item" onclick="openPoetry()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg13.png"
+                class="grid-full-img"
+                alt="唐诗宋词"
+              />
+            </div>
+            <div class="img-item" onclick="openModernDict()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg16.png"
+                class="grid-full-img"
+                alt="现代汉语词典"
+              />
+            </div>
           </div>
-          <div class="img-item" onclick="openNoteBook()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg7.png"
-              class="grid-full-img"
-              alt="我的字典本"
-            />
+        </div>
+
+        <div class="module-stage stage-tools" id="stage-tools">
+          <div class="module-stage-title">
+            <span>📚 学习工具</span><small>中小学通用</small>
           </div>
-          <div class="img-item" onclick="openRadicals()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg8.png"
-              class="grid-full-img"
-              alt="偏旁部首"
-            />
-          </div>
-          <div class="img-item" onclick="openSentence()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg9.png"
-              class="grid-full-img"
-              alt="造句练习"
-            />
-          </div>
-          <div class="img-item" onclick="openImgRead()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg10.png"
-              class="grid-full-img"
-              alt="图片识字"
-            />
-          </div>
-          <div class="img-item" onclick="openMatch()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg11.png"
-              class="grid-full-img"
-              alt="连连看"
-            />
-          </div>
-          <div class="img-item" onclick="openStroke()">
-            <img
-              src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg12.png"
-              class="grid-full-img"
-              alt="笔顺学习"
-            />
+          <div class="img-grid">
+            <div class="img-item" onclick="openNoteBook()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg7.png"
+                class="grid-full-img"
+                alt="我的字典本"
+              />
+            </div>
+            <div class="img-item" onclick="openCourseware()">
+              <img
+                src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/bg15.png"
+                class="grid-full-img"
+                alt="课本课件"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -477,7 +542,7 @@
       </div>
     </div>
 
-    <!-- 图片识字 -->
+    <!-- 图片识字
     <div class="overlay" id="ov-imgread">
       <div class="modal">
         <div class="modal-hd">
@@ -517,26 +582,23 @@
           <div id="imgread-result"></div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- 连连看 -->
+    <!-- 积木识字 -->
     <div class="overlay" id="ov-match">
       <div class="modal">
         <div class="modal-hd">
           <img
             class="modal-title-icon"
-            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_match_game.png"
+            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_renzi.png"
             alt=""
           /><button class="modal-close" onclick="closeAll()">x</button>
         </div>
         <div class="modal-body">
-          <div class="match-score" id="match-score">配对 0 / 6</div>
+          <div class="match-score" id="match-score">积木识字</div>
           <div class="match-grid">
-            <div class="match-col" id="match-left"></div>
-            <div class="match-col" id="match-right"></div>
-          </div>
-          <div style="text-align: center; margin-top: 12px">
-            <button class="btn-ghost" onclick="initMatch()">换一组</button>
+            <div class="match-blocks" id="match-left"></div>
+            <div id="match-right" style="display: none"></div>
           </div>
           <div id="match-ai" style="margin-top: 10px"></div>
         </div>
@@ -593,6 +655,132 @@
       </div>
     </div>
 
+    <!-- 唐诗宋词 -->
+    <div class="overlay" id="ov-poetry">
+      <div class="modal">
+        <div class="modal-hd">
+          <img
+            class="modal-title-icon"
+            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_idiom_story.png"
+            alt=""
+          /><button class="modal-close" onclick="closeAll()">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="classic-title">唐诗宋词</div>
+          <div class="poetry-toolbar">
+            <div class="classic-tabs" id="poetry-tabs"></div>
+            <input
+              class="poetry-search"
+              id="poetry-search"
+              placeholder="搜索诗名、作者或诗句"
+              oninput="searchPoetryList(this.value)"
+            />
+          </div>
+          <div class="classic-grid" id="poetry-list"></div>
+          <div class="poetry-pagination" id="poetry-pagination"></div>
+          <div class="poetry-detail" id="poetry-detail"></div>
+          <div id="poetry-ai" style="margin-top: 12px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 国学 -->
+    <div class="overlay" id="ov-guoxue">
+      <div class="modal">
+        <div class="modal-hd">
+          <img
+            class="modal-title-icon"
+            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_guoxue.png"
+            alt=""
+          /><button class="modal-close" onclick="closeAll()">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="classic-title">国学启蒙</div>
+          <div class="classic-reader" id="guoxue-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课本课件 -->
+    <div class="overlay" id="ov-courseware">
+      <div class="modal courseware-modal">
+        <div class="modal-hd">
+          <img
+            class="modal-title-icon"
+            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_kejian.png"
+            alt=""
+          /><button class="modal-close" onclick="closeAll()">x</button>
+        </div>
+        <div class="modal-body">
+          <div id="courseware-list-view">
+            <div class="classic-title">课本课件</div>
+            <div
+              class="classic-tabs"
+              id="courseware-stage-tabs"
+              aria-label="课件学段"
+            ></div>
+            <div class="classic-grid" id="courseware-list"></div>
+          </div>
+          <div id="courseware-reader" class="courseware-reader" hidden>
+            <div class="courseware-toolbar">
+              <button
+                class="courseware-tool-btn"
+                onclick="closeCoursewarePdf()"
+              >
+                ← 返回
+              </button>
+              <strong id="courseware-pdf-title"></strong>
+            </div>
+            <div id="courseware-pdf-status" class="courseware-pdf-status"></div>
+            <div id="courseware-canvas-wrap" class="courseware-canvas-wrap">
+              <button
+                class="courseware-page-arrow courseware-page-arrow-left"
+                aria-label="上一页"
+                onclick="changeCoursewarePage(-1)"
+              >
+                ‹
+              </button>
+              <canvas id="courseware-pdf-canvas"></canvas>
+              <canvas id="courseware-pdf-canvas-right"></canvas>
+              <button
+                class="courseware-page-arrow courseware-page-arrow-right"
+                aria-label="下一页"
+                onclick="changeCoursewarePage(1)"
+              >
+                ›
+              </button>
+              <span id="courseware-page-info" class="courseware-page-info"
+                >0 / 0</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 现代汉语词典 -->
+    <div class="overlay" id="ov-modern-dict">
+      <div class="modal">
+        <div class="modal-hd">
+          <img
+            class="modal-title-icon"
+            src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/icon_hanyu.png"
+            alt=""
+          /><button class="modal-close" onclick="closeAll()">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="classic-title">现代汉语词典</div>
+          <div class="modern-dict-row">
+            <input id="modern-dict-input" placeholder="输入汉字或词语" />
+            <button class="btn-primary" onclick="searchModernDict()">
+              查询
+            </button>
+          </div>
+          <div id="modern-dict-result"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- 通关弹窗 -->
     <div class="win-modal" id="win-modal">
       <div class="win-box">
@@ -615,11 +803,11 @@
     <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/write-char-data.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/stroke-data.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/radical-data.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/block-words.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7.0/dist/hanzi-writer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0"></script>
-    <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/hanzi-learn.js?v=20260706-1"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wjzcd2011/yuxiaoxiong/hanzi/hanzi-learn.js"></script>
   </body>
-
 </html>
 
 
